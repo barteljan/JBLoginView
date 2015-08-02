@@ -8,16 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <VISPER/VISPERViewController.h>
-#import <BSKeyboardControls/BSKeyboardControls.h>
 #import "IJBLoginView.h"
 
-@interface JBLoginViewController : VISPERViewController<UITextFieldDelegate,BSKeyboardControlsDelegate>
+@interface JBLoginViewController : VISPERViewController<UITextFieldDelegate>
 
 @property(nonatomic) IBOutlet UIView<IJBLoginView> *view;
-
-@property(nonatomic) BSKeyboardControls *keyboardControls;
-
-@property (strong, nonatomic) IBOutlet UIToolbar *keyboardBar;
-
 
 @end
