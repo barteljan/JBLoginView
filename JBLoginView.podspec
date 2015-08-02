@@ -15,12 +15,11 @@ Pod::Spec.new do |s|
                         A simple VISPER based Login Screen.
                         Should be used in composition with other VISPER Components
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/JBLoginView"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/barteljan/JBLoginView"
   s.license          = 'MIT'
   s.author           = { "Jan Bartel" => "barteljan@yahoo.de" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/JBLoginView.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/barteljan/JBLoginView.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/janbartel'
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
