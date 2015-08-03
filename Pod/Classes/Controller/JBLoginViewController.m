@@ -117,9 +117,12 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+    
     if(textField==self.view.passwordField){
+        [textField resignFirstResponder];
         [self loginAction:textField];
+    }else{
+        [self.view.passwordField becomeFirstResponder];
     }
     return YES;
 }
