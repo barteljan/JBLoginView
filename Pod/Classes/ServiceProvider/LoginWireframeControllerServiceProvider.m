@@ -86,7 +86,6 @@
 
 -(NSBundle*)bundleByName:(NSString*)bundleName{
     NSBundle *mainBundle = [NSBundle mainBundle];
-    [mainBundle load];
     
     NSString *path = nil;
     
@@ -101,7 +100,6 @@
     
     if(path){
         NSBundle *bundle = [NSBundle bundleWithPath:path];
-        [bundle load];
         return bundle;
     }
     
