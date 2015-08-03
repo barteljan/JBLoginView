@@ -36,10 +36,8 @@
     self.view.usernameField.delegate = self;
     self.view.passwordField.delegate = self;
     
-    self.view.titleLabel.text = @"Denn Zeit ist Geld";
-    
-    self.view.subTitleLabel.text = @"Und das brauchen wir jetzt!";
-    
+    self.view.titleLabel.text = @"Ein kurzer Spruch zur Begrüßung";
+    self.view.subTitleLabel.text = @"Und ein witziger Untertitel!";
     
     [self.view setNeedsUpdateConstraints];
 }

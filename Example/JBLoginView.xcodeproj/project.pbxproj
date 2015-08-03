@@ -258,6 +258,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Jan Bartel";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 5M2T33LA2N;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -526,6 +529,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JBLoginView/JBLoginView-Prefix.pch";
 				INFOPLIST_FILE = "JBLoginView/JBLoginView-Info.plist";
@@ -542,6 +546,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JBLoginView/JBLoginView-Prefix.pch";
 				INFOPLIST_FILE = "JBLoginView/JBLoginView-Info.plist";

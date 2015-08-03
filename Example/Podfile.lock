@@ -1,5 +1,5 @@
 PODS:
-  - JBLoginView (0.1.0):
+  - JBLoginView (0.1.1):
     - PureLayout
     - UIColor-HTMLColors
     - VISPER
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  JBLoginView: ab605697d1959ca5881d902d28ffb7e5ac6f129e
+  JBLoginView: 8e42b8518a8cdd402c07c9bd399da8c9def715e1
   JLRoutes: fc36fd38ab476d5ac3a6a84b05be60e4b1a2bc81
   Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d

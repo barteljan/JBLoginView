@@ -208,13 +208,11 @@
 
 - (UIInterfaceOrientation)orientation{
     
-    CGFloat scale = [UIScreen mainScreen].scale;
-    CGSize nativeSize = [UIScreen mainScreen].currentMode.size;
     CGSize sizeInPoints = [UIScreen mainScreen].bounds.size;
     
     UIInterfaceOrientation result;
     
-    if(scale * sizeInPoints.width == nativeSize.width){
+    if(sizeInPoints.width <= sizeInPoints.height){
         result = UIInterfaceOrientationPortrait;
     }else{
         result = UIInterfaceOrientationLandscapeLeft;
