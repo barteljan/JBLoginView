@@ -12,6 +12,7 @@
 
 @interface JBLoginViewController ()
 @property BOOL isMovedUp;
+@property double keyboardHeight;
 @end
 
 @implementation JBLoginViewController
@@ -49,12 +50,12 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow)
+                                             selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide)
+                                             selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
 }
@@ -93,7 +94,11 @@
 
 #define kOFFSET_FOR_KEYBOARD 120.0
 
--(void)keyboardWillShow {
+-(void)keyboardWillShow:(NSNotification*)notification {
+
+    
+    self.keyboardHeight = [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
+    
     // Animate the current view out of the way
     if (self.view.frame.origin.y >= 0)
     {
@@ -105,7 +110,7 @@
     }
 }
 
--(void)keyboardWillHide {
+-(void)keyboardWillHide:(NSNotification*)notification {
     if (self.view.frame.origin.y >= 0)
     {
         [self setViewMovedUp:YES];
@@ -141,14 +146,14 @@
     CGRect rect = self.view.frame;
     if (movedUp)
     {
-        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
-        rect.size.height += kOFFSET_FOR_KEYBOARD;
+        rect.origin.y -= self.keyboardHeight;
+        rect.size.height += self.keyboardHeight;
     }
     else
     {
         // revert back to the normal state.
-        rect.origin.y += kOFFSET_FOR_KEYBOARD;
-        rect.size.height -= kOFFSET_FOR_KEYBOARD;
+        rect.origin.y += self.keyboardHeight;
+        rect.size.height -= self.keyboardHeight;
     }
     self.view.frame = rect;
     
