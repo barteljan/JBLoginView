@@ -19,7 +19,7 @@
 @property(nonatomic)NSDictionary *failureRouteParams;
 @property (nonatomic) NSURL *forgotPasswordRoute;
 @property (nonatomic) NSDictionary *forgotPasswordRouteParams;
-
+@property (nonatomic) NSObject <IVISPERRepository> *repository;
 @end
 
 
@@ -27,6 +27,7 @@
 
 -(id)initWithLoginRoutePattern:(NSString*)routePattern
                      wireframe:(NSObject<IVISPERWireframe>*)wireframe
+                    repository:(NSObject <IVISPERRepository> *)repository
                   successRoute:(NSURL*)successRoute
             successRouteParams:(NSDictionary*)successRouteParams
                   failureRoute:(NSURL*)failureRoute
@@ -37,6 +38,7 @@
     if(self){
         self->_loginRoutePattern         = routePattern;
         self->_wireframe                 = wireframe;
+        self->_repository                = repository;
         self->_successRoute              = successRoute;
         self->_successRouteParams        = successRouteParams;
         self->_failureRoute              = failureRoute;
@@ -58,8 +60,13 @@
                                                                                     bundle:bundle];
         
         JBLoginViewControllerPresenter *presenter = [[JBLoginViewControllerPresenter alloc] initWithWireframe:self.wireframe
-                                                                                            loginSuccessRoute:self.successRoute successRouteParams:self.successRouteParams
-                                                                                                 failureRoute:self.failureRoute failureRouteParams:self.failureRouteParams forgotPasswordRoute:self.forgotPasswordRoute forgotPasswordRouteParams:self.forgotPasswordRouteParams];
+                                                                                                   repository:self.repository
+                                                                                            loginSuccessRoute:self.successRoute
+                                                                                           successRouteParams:self.successRouteParams
+                                                                                                 failureRoute:self.failureRoute
+                                                                                           failureRouteParams:self.failureRouteParams
+                                                                                          forgotPasswordRoute:self.forgotPasswordRoute
+                                                                                    forgotPasswordRouteParams:self.forgotPasswordRouteParams];
         [controller addVisperPresenter:presenter];
         
         return controller;

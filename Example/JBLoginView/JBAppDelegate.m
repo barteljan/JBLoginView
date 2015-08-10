@@ -43,15 +43,15 @@
     VISPERComposedPersistenceStore *store = [[VISPERComposedPersistenceStore alloc] init];
     
     self.composedApplication = [[JBLoginScreenComposedApplication alloc]
-                                initWithWireframe:self.wireframe
-                                globalRepository:repository
-                                globalPersistenceStore:store
-                                successRoute:[NSURL URLWithString:@"/login-success"]
-                                successRouteParams:@{}
-                                failureRoute:[NSURL URLWithString:@"/login-failure"]
-                                failureRouteParams:@{}
-                                forgotPasswordRoute:[NSURL URLWithString:@"/forgetPassword"]
-                                forgotPasswordRouteParams:@{}];
+            initWithWireframe:self.wireframe
+                   repository:repository
+             persistenceStore:store
+                 successRoute:[NSURL URLWithString:@"/login-success"]
+           successRouteParams:@{}
+                 failureRoute:[NSURL URLWithString:@"/login-failure"]
+           failureRouteParams:@{}
+          forgotPasswordRoute:[NSURL URLWithString:@"/forgetPassword"]
+    forgotPasswordRouteParams:@{}];
     
     [self.wireframe addRoute:@"/login-success"];
     [self.wireframe addRoute:@"/login-failure"];

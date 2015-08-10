@@ -1,12 +1,3 @@
-#
-# Be sure to run `pod lib lint JBLoginView.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "JBLoginView"
   s.version          = "0.1.5"
@@ -30,14 +21,11 @@ Pod::Spec.new do |s|
   }
 
   s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
-
   s.frameworks = 'UIKit'
   s.dependency 'VISPER'
   s.dependency 'PureLayout'
   s.dependency 'VISPERComposedApplication'
   s.dependency 'UIColor-HTMLColors'
-
+  s.dependency 'JBLoginDataCommands'
 
 end

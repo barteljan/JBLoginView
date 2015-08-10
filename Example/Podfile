@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'JBLoginView_Example', :exclusive => true do
   pod "JBLoginView", :path => "../"
+  pod "BlocksKit"
 end
 
 target 'JBLoginView_Tests', :exclusive => true do

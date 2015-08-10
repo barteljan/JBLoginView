@@ -23,6 +23,7 @@
 		9A7A58161B6ECDB500808499 /* SuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A7A58141B6ECDB500808499 /* SuccessViewController.xib */; };
 		9A7A581A1B6ECDD400808499 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7A58181B6ECDD400808499 /* ForgotPasswordViewController.m */; };
 		9A7A581B1B6ECDD400808499 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A7A58191B6ECDD400808499 /* ForgotPasswordViewController.xib */; };
+		9A9A2E691B78F5DE002DD689 /* JBDummyLoginRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9A2E681B78F5DE002DD689 /* JBDummyLoginRepository.m */; };
 		9AC1DBA01B6B77D700F36A58 /* JBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1DB9E1B6B77D700F36A58 /* JBAppDelegate.m */; };
 		9AC1DBA11B6B77D700F36A58 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AC1DB9F1B6B77D700F36A58 /* Application.xib */; };
 		DAB38AEC3EB2B0E28D22550E /* Pods_JBLoginView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA55451390D8C338B1C9E66 /* Pods_JBLoginView_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -65,6 +66,8 @@
 		9A7A58171B6ECDD400808499 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		9A7A58181B6ECDD400808499 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		9A7A58191B6ECDD400808499 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
+		9A9A2E671B78F5DE002DD689 /* JBDummyLoginRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBDummyLoginRepository.h; sourceTree = "<group>"; };
+		9A9A2E681B78F5DE002DD689 /* JBDummyLoginRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBDummyLoginRepository.m; sourceTree = "<group>"; };
 		9AC1DB9D1B6B77D700F36A58 /* JBAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBAppDelegate.h; sourceTree = "<group>"; };
 		9AC1DB9E1B6B77D700F36A58 /* JBAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBAppDelegate.m; sourceTree = "<group>"; };
 		9AC1DB9F1B6B77D700F36A58 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				9A7A58171B6ECDD400808499 /* ForgotPasswordViewController.h */,
 				9A7A58181B6ECDD400808499 /* ForgotPasswordViewController.m */,
 				9A7A58191B6ECDD400808499 /* ForgotPasswordViewController.xib */,
+				9A9A2E671B78F5DE002DD689 /* JBDummyLoginRepository.h */,
+				9A9A2E681B78F5DE002DD689 /* JBDummyLoginRepository.m */,
 			);
 			name = "Example for JBLoginView";
 			path = JBLoginView;
@@ -408,6 +413,7 @@
 			files = (
 				9A7A581A1B6ECDD400808499 /* ForgotPasswordViewController.m in Sources */,
 				9AC1DBA01B6B77D700F36A58 /* JBAppDelegate.m in Sources */,
+				9A9A2E691B78F5DE002DD689 /* JBDummyLoginRepository.m in Sources */,
 				9A7A58151B6ECDB500808499 /* SuccessViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
@@ -530,6 +536,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DYLIB_COMPATIBILITY_VERSION = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JBLoginView/JBLoginView-Prefix.pch";
 				INFOPLIST_FILE = "JBLoginView/JBLoginView-Info.plist";
@@ -547,6 +554,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DYLIB_COMPATIBILITY_VERSION = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JBLoginView/JBLoginView-Prefix.pch";
 				INFOPLIST_FILE = "JBLoginView/JBLoginView-Info.plist";

@@ -11,15 +11,15 @@
 
 @implementation JBLoginScreenComposedApplication
 
--(id)      initWithWireframe:(NSObject<IVISPERWireframe> *)wireframe
-            globalRepository:(NSObject<IVISPERComposedRepository> *)repository
-      globalPersistenceStore:(NSObject<IVISPERComposedPersistenceStore> *)persistenceStore
-                successRoute:(NSURL*)successRoute
-          successRouteParams:(NSDictionary*)successRouteParams
-                failureRoute:(NSURL*)failureRoute
-          failureRouteParams:(NSDictionary*)failureRouteParams
-         forgotPasswordRoute:(NSURL*)forgotPasswordRoute
-   forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
+-(id)initWithWireframe:(NSObject <IVISPERWireframe> *)wireframe
+               repository:(NSObject <IVISPERComposedRepository> *)repository
+         persistenceStore:(NSObject <IVISPERComposedPersistenceStore> *)persistenceStore
+             successRoute:(NSURL *)successRoute
+       successRouteParams:(NSDictionary *)successRouteParams
+             failureRoute:(NSURL *)failureRoute
+       failureRouteParams:(NSDictionary *)failureRouteParams
+      forgotPasswordRoute:(NSURL *)forgotPasswordRoute
+forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
     
     self = [super init];
     
@@ -32,7 +32,7 @@
         self->_failureRouteParams           = failureRouteParams;
         self->_forgotPasswordRoute          = forgotPasswordRoute;
         self->_forgotPasswordRouteParams    = forgotPasswordRouteParams;
-        self->_globalWireframe              = wireframe;
+        self->_wireframe = wireframe;
     }
     
     return self;
@@ -49,7 +49,8 @@
     
     LoginWireframeControllerServiceProvider *controllerProvider = [[LoginWireframeControllerServiceProvider alloc]
                                                                    initWithLoginRoutePattern:self.startingRoute
-                                                                   wireframe:self.globalWireframe
+                                                                   wireframe:wireframe
+                                                                   repository:repository
                                                                    successRoute:self.successRoute
                                                                    successRouteParams:self.successRouteParams
                                                                    failureRoute:self.failureRoute
@@ -57,18 +58,18 @@
                                                                    forgotPasswordRoute:self.forgotPasswordRoute
                                                                    forgotPasswordRouteParams:self.forgotPasswordRouteParams];
     
-    [self.globalWireframe addControllerServiceProvider:controllerProvider
-                                          withPriority:0];
-    [self.globalWireframe addRoutingOptionsServiceProvider:self withPriority:0];
+    [self.wireframe addControllerServiceProvider:controllerProvider
+                                    withPriority:0];
+    [self.wireframe addRoutingOptionsServiceProvider:self withPriority:0];
     
-    [self.globalWireframe addRoute:self.startingRoute];
+    [self.wireframe addRoute:self.startingRoute];
 }
 
 -(NSObject<IVISPERRoutingOption>*)optionForRoutePattern:(NSString*)routePattern
                                              parameters:(NSDictionary*)dictionary
                                          currentOptions:(NSObject<IVISPERRoutingOption>*)currentOptions{
     if([routePattern isEqualToString:self.startingRoute] && !currentOptions){
-        return [self.globalWireframe presentRootVCRoutingOption:YES];
+        return [self.wireframe presentRootVCRoutingOption:YES];
     }
     return nil;
 }

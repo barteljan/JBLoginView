@@ -161,6 +161,14 @@
     self.isMovedUp = movedUp;
 }
 
+-(NSString*)username{
+    return self.view.usernameField.text;
+}
+
+-(NSString*)password{
+    return self.view.usernameField.text;
+}
+
 
 
 
