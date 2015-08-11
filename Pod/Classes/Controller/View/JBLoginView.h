@@ -24,4 +24,7 @@
 @property (nonatomic, weak) IBOutlet UILabel * titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel * subTitleLabel;
 
+@property(nonatomic) CGFloat bottomMargin;
+
+
 @end

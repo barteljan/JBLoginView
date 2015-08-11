@@ -9,14 +9,14 @@
 #import "LoginWireframeControllerServiceProvider.h"
 #import "JBLoginViewController.h"
 #import "JBLoginViewControllerPresenter.h"
+#import "JBLoginMessagePresenter.h"
+
 @interface LoginWireframeControllerServiceProvider()
 
 @property(nonatomic)NSString *loginRoutePattern;
 @property(nonatomic)NSObject<IVISPERWireframe>*wireframe;
 @property(nonatomic)NSURL *successRoute;
 @property(nonatomic)NSDictionary *successRouteParams;
-@property(nonatomic)NSURL *failureRoute;
-@property(nonatomic)NSDictionary *failureRouteParams;
 @property (nonatomic) NSURL *forgotPasswordRoute;
 @property (nonatomic) NSDictionary *forgotPasswordRouteParams;
 @property (nonatomic) NSObject <IVISPERRepository> *repository;
@@ -30,8 +30,6 @@
                     repository:(NSObject <IVISPERRepository> *)repository
                   successRoute:(NSURL*)successRoute
             successRouteParams:(NSDictionary*)successRouteParams
-                  failureRoute:(NSURL*)failureRoute
-            failureRouteParams:(NSDictionary*)failureRouteParams
            forgotPasswordRoute:(NSURL*)forgotPasswordRoute
      forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
     self = [super init];
@@ -41,8 +39,6 @@
         self->_repository                = repository;
         self->_successRoute              = successRoute;
         self->_successRouteParams        = successRouteParams;
-        self->_failureRoute              = failureRoute;
-        self->_failureRouteParams        = failureRouteParams;
         self->_forgotPasswordRoute       = forgotPasswordRoute;
         self->_forgotPasswordRouteParams = forgotPasswordRouteParams;
     }
@@ -59,12 +55,13 @@
         JBLoginViewController *controller = [[JBLoginViewController alloc] initWithNibName:@"JBLoginViewController"
                                                                                     bundle:bundle];
         
+        JBLoginMessagePresenter *messagePresenter = [[JBLoginMessagePresenter alloc] initWithViewController:controller];
+        
         JBLoginViewControllerPresenter *presenter = [[JBLoginViewControllerPresenter alloc] initWithWireframe:self.wireframe
                                                                                                    repository:self.repository
+                                                                                             messagePresenter:messagePresenter
                                                                                             loginSuccessRoute:self.successRoute
                                                                                            successRouteParams:self.successRouteParams
-                                                                                                 failureRoute:self.failureRoute
-                                                                                           failureRouteParams:self.failureRouteParams
                                                                                           forgotPasswordRoute:self.forgotPasswordRoute
                                                                                     forgotPasswordRouteParams:self.forgotPasswordRouteParams];
         [controller addVisperPresenter:presenter];

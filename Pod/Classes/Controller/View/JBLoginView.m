@@ -14,6 +14,7 @@
 
 @property(nonatomic)NSMutableArray *constraintsToRemove;
 
+
 @end
 
 @implementation JBLoginView
@@ -190,21 +191,28 @@
     [self.loginButton autoSetDimension:ALDimensionHeight
                                 toSize:62];
     
-    //forget button
+    
+    [self.forgotButton autoAlignAxis:ALAxisVertical toSameAxisOfView:self];
     
     if (!UIInterfaceOrientationIsLandscape([self orientation])) {
-        constraints =
-        [self.forgotButton autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 35, 100, 35)
-                                                    excludingEdge:ALEdgeTop];
-        [self.constraintsToRemove addObjectsFromArray:constraints];
+        NSLayoutConstraint *constraint = [self.forgotButton autoPinEdge:ALEdgeBottom
+                                                                 toEdge:ALEdgeBottom
+                                                                 ofView:self
+                                                             withOffset:-100-self.bottomMargin];
+        [self.constraintsToRemove addObject:constraint];
     }else{
-        constraints =
-        [self.forgotButton autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 35, 10, 35)
-                                                    excludingEdge:ALEdgeTop];
-        [self.constraintsToRemove addObjectsFromArray:constraints];
+        NSLayoutConstraint *constraint = [self.forgotButton autoPinEdge:ALEdgeBottom
+                                                                 toEdge:ALEdgeBottom
+                                                                 ofView:self
+                                                             withOffset:-10-self.bottomMargin];
+        [self.constraintsToRemove addObject:constraint];
     }
+    
+
 
 }
+
+
 
 - (UIInterfaceOrientation)orientation{
     
@@ -220,5 +228,9 @@
     
     return result;
 }
+
+
+
+
 
 @end

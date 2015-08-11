@@ -12,7 +12,8 @@
 
 @interface JBLoginViewController ()
 @property BOOL isMovedUp;
-@property double keyboardHeight;
+@property CGFloat keyboardHeight;
+@property BOOL showTitle;
 @end
 
 @implementation JBLoginViewController
@@ -33,15 +34,46 @@
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
+    [self showTitle:YES];
     
     self.view.usernameField.delegate = self;
     self.view.passwordField.delegate = self;
     
-    self.view.titleLabel.text = @"Ein kurzer Spruch zur Begrüßung";
-    self.view.subTitleLabel.text = @"Und ein witziger Untertitel!";
-    
     [self.view setNeedsUpdateConstraints];
 }
+
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    
+    if(CGRectIntersectsRect(self.view.titleLabel.frame, self.view.usernameField.frame) || !self.showTitle){
+        self.view.titleLabel.hidden = TRUE;
+    }else{
+        self.view.titleLabel.hidden = FALSE;
+    }
+    
+    if(CGRectIntersectsRect(self.view.subTitleLabel.frame, self.view.usernameField.frame) || !self.showTitle){
+        self.view.subTitleLabel.hidden = TRUE;
+    }else{
+        self.view.subTitleLabel.hidden = FALSE;
+    }
+
+}
+
+-(void)showForgotPasswordButton:(BOOL)showButton{
+    if(showButton){
+        self.view.forgotButton.hidden = FALSE;
+    }else{
+        self.view.forgotButton.hidden = TRUE;
+    }
+}
+
+
+-(void)showTitle:(BOOL)showTitle{
+    self.showTitle = showTitle;
+    [self.view setNeedsLayout];
+}
+
 
 
 - (void)viewWillAppear:(BOOL)animated
@@ -95,37 +127,22 @@
 #define kOFFSET_FOR_KEYBOARD 120.0
 
 -(void)keyboardWillShow:(NSNotification*)notification {
-
-    
+   
     self.keyboardHeight = [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
-    
-    // Animate the current view out of the way
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
+
+    //change bottom margin of so that the form covers the whole screen
+    [self animateViewBottomMargin:self.keyboardHeight - 120.0];
 }
 
 -(void)keyboardWillHide:(NSNotification*)notification {
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
+    self.keyboardHeight = 0;
+    [self animateViewBottomMargin:self.keyboardHeight];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     if(textField==self.view.passwordField){
         [textField resignFirstResponder];
-        [self loginAction:textField];
     }else{
         [self.view.passwordField becomeFirstResponder];
     }
@@ -133,32 +150,18 @@
 }
 
 //method to move the view up/down whenever the keyboard is shown/dismissed
--(void)setViewMovedUp:(BOOL)movedUp
+-(void)animateViewBottomMargin:(CGFloat)bottomMargin
 {
-    
-    if(self.isMovedUp == movedUp){
-        return;
-    }
-    
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDuration:2.0];
     
-    CGRect rect = self.view.frame;
-    if (movedUp)
-    {
-        rect.origin.y -= self.keyboardHeight;
-        rect.size.height += self.keyboardHeight;
-    }
-    else
-    {
-        // revert back to the normal state.
-        rect.origin.y += self.keyboardHeight;
-        rect.size.height -= self.keyboardHeight;
-    }
-    self.view.frame = rect;
+    self.view.bottomMargin = bottomMargin;
+    
+    [self.view setNeedsUpdateConstraints];
+    //[self.view updateConstraints];
     
     [UIView commitAnimations];
-    self.isMovedUp = movedUp;
+    
 }
 
 -(NSString*)username{
@@ -166,10 +169,24 @@
 }
 
 -(NSString*)password{
-    return self.view.usernameField.text;
+    return self.view.passwordField.text;
 }
 
+-(void)setTitleText:(NSString*)titleText{
+    self.view.titleLabel.text = titleText;
+}
 
+-(NSString*)titleText{
+    return self.view.titleLabel.text;
+}
+
+-(void)setSubTitleText:(NSString*)text{
+    self.view.subTitleLabel.text = text;
+}
+
+-(NSString*)subTitleText{
+    return self.view.subTitleLabel.text;
+}
 
 
 

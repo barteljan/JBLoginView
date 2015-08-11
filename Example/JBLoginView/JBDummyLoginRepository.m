@@ -8,7 +8,8 @@
 
 #import "JBDummyLoginRepository.h"
 #import <JBLoginDataCommands/IJBLoginLoginAsUserCommand.h>
-#import <JBLoginDataCommands/IJBLogin.h>
+#import <JBLoginDataCommands/JBLoginLoginAsUserResponse.h>
+
 #import <BlocksKit/BlocksKit.h>
 
 @implementation JBDummyLoginRepository
@@ -27,10 +28,24 @@
 -(void)getDataForCommand:(NSObject *)command
               completion:(BOOL (^)(NSString *identifier, NSObject *response, NSError *__autoreleasing *error))completion{
 
-    NSObject<>
+    NSObject<IJBLoginLoginAsUserCommand> *loginCommand = (NSObject<IJBLoginLoginAsUserCommand> *)command;
+    if(loginCommand.username == nil ||
+       loginCommand.password == nil ||
+       [loginCommand.username isEqualToString:@""] ||
+       [loginCommand.password isEqualToString:@""] ){
+        
+        NSError *error = [NSError errorWithDomain:@"UserInputError" code:25646 userInfo:@{
+                                                                                          NSLocalizedDescriptionKey:NSLocalizedString(@"Please enter username and password", @"username or password is empty message")
+                                                                                          }];
+        
+        completion(self.identifier,nil,&error);
+        return;
+    }
+    
+    JBLoginLoginAsUserResponse* response = [[JBLoginLoginAsUserResponse alloc] initWithToken:@"550e8400-e29b-11d4-a716-446655440000"];
     
     [NSTimer bk_scheduledTimerWithTimeInterval:2.5 block:^(NSTimer *timer) {
-        completion()
+        completion(self.identifier,response,nil);
     } repeats:NO];
     
 }

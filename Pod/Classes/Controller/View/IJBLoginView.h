@@ -18,4 +18,10 @@
 -(UILabel     *) titleLabel;
 -(UILabel     *) subTitleLabel;
 
+
+-(CGFloat) bottomMargin;
+-(void)    setBottomMargin:(CGFloat)bottomMargin;
+
+
+
 @end

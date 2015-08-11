@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <VISPER/VISPERViewControllerPresenter.h>
 #import <VISPERComposedApplication/IVISPERRepository.h>
+#import "IJBLoginMessagePresenter.h"
 
 @interface JBLoginViewControllerPresenter : VISPERViewControllerPresenter
 
 -(id)initWithWireframe:(NSObject<IVISPERWireframe>*)wireframe
             repository:(NSObject <IVISPERRepository> *)repository
+      messagePresenter:(NSObject<IJBLoginMessagePresenter>*)messagePresenter
      loginSuccessRoute:(NSURL*)successRoute
     successRouteParams:(NSDictionary*)successRouteParams
-          failureRoute:(NSURL*)failureRoute
-    failureRouteParams:(NSDictionary*)failureRouteParams
    forgotPasswordRoute:(NSURL*)forgotPasswordRoute
 forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams;
 

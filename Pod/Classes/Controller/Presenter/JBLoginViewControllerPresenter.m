@@ -9,17 +9,19 @@
 #import "JBLoginViewControllerPresenter.h"
 #import "IJBLoginViewController.h"
 #import <JBLoginDataCommands/JBLoginLoginAsUserCommand.h>
+#import <JBLoginDataCommands/JBLoginGetTitleCommand.h>
+#import <JBLoginDataCommands/IJBLoginGetTitleResponse.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 
 @interface JBLoginViewControllerPresenter()
 
 @property (nonatomic) NSURL *successRoute;
 @property (nonatomic) NSDictionary *successRouteParams;
-@property (nonatomic) NSURL *failureRoute;
-@property (nonatomic) NSDictionary *failureRouteParams;
 @property (nonatomic) NSURL *forgotPasswordRoute;
 @property (nonatomic) NSDictionary *forgotPasswordRouteParams;
 @property (nonatomic) NSObject <IVISPERRepository> *repository;
+@property (nonatomic) NSObject<IJBLoginMessagePresenter> *messagePresenter;
 
 @end
 
@@ -27,19 +29,17 @@
 
 -(id)initWithWireframe:(NSObject<IVISPERWireframe>*)wireframe
             repository:(NSObject <IVISPERRepository> *)repository
+      messagePresenter:(NSObject<IJBLoginMessagePresenter>*)messagePresenter
      loginSuccessRoute:(NSURL*)successRoute
     successRouteParams:(NSDictionary*)successRouteParams
-          failureRoute:(NSURL*)failureRoute
-    failureRouteParams:(NSDictionary*)failureRouteParams
    forgotPasswordRoute:(NSURL*)forgotPasswordRoute
 forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
     self = [super initWithWireframe:wireframe];
     if(self){
         self->_repository                = repository;
+        self->_messagePresenter          = messagePresenter;
         self->_successRoute              = successRoute;
         self->_successRouteParams        = successRouteParams;
-        self->_failureRoute              = failureRoute;
-        self->_failureRouteParams        = failureRouteParams;
         self->_forgotPasswordRoute       = forgotPasswordRoute;
         self->_forgotPasswordRouteParams = forgotPasswordRouteParams;
     }
@@ -60,6 +60,13 @@ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
 -(void)viewEvent:(NSObject<IVISPERViewEvent> *)event
         withView:(UIView *)view
    andController:(UIViewController *)viewController{
+    
+    if(![viewController conformsToProtocol:@protocol(IJBLoginViewController)]){
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:@"controller does not conform to protocol: IJBLoginViewController"
+                                     userInfo:@{@"controller":viewController}];
+    }
+    
     [super viewEvent:event withView:view andController:viewController];
     
     if([event.name isEqualToString:@"loginButtonPressed"]){
@@ -69,17 +76,65 @@ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
     }
 }
 
+
+-(void)viewDidLoad:(UIView *)view
+    withController:(UIViewController *)viewController
+             event:(NSObject<IVISPERViewEvent> *)event{
+    
+    if(![viewController conformsToProtocol:@protocol(IJBLoginViewController)]){
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:@"controller does not conform to protocol: IJBLoginViewController"
+                                     userInfo:@{@"controller":viewController}];
+    }
+    
+    //hide forgot password button if no route for forgetting a password is given
+    UIViewController<IJBLoginViewController> *controller = (UIViewController<IJBLoginViewController>*)viewController;
+    
+    if(self.forgotPasswordRoute){
+        [controller showForgotPasswordButton:YES];
+    }else{
+        [controller showForgotPasswordButton:NO];
+    }
+    
+    //set title
+    JBLoginGetTitleCommand *getTitleCommand = [[JBLoginGetTitleCommand alloc] init];
+    
+    [self.repository getDataForCommand:getTitleCommand
+                            completion:^BOOL(NSString *identifier, NSObject *titleResponse, NSError *__autoreleasing *error) {
+                                if(![titleResponse conformsToProtocol:@protocol(IJBLoginGetTitleResponse)]){
+                                    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                                                   reason:@"response should conform to protocol: IJBLoginGetTitleResponse"
+                                                                 userInfo:@{@"response":titleResponse}];
+                                }
+                                
+                                NSObject<IJBLoginGetTitleResponse> *response = (NSObject<IJBLoginGetTitleResponse>*)titleResponse;
+                                
+                                [controller setTitleText:response.title];
+                                [controller setSubTitleText:response.subTitle];
+                                
+                                return YES;
+                            }];
+}
+
 -(void)loginButtonPressedWithController:(UIViewController<IJBLoginViewController>*)controller{
     
     if(![controller conformsToProtocol:@protocol(IJBLoginViewController)]){
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"controller does not conform to protocol: IJBLoginViewController" userInfo:@{@"controller":controller}];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:@"controller does not conform to protocol: IJBLoginViewController"
+                                     userInfo:@{@"controller":controller}];
     }
     
     JBLoginLoginAsUserCommand *command = [[JBLoginLoginAsUserCommand alloc] initWithUsername:controller.username password:controller.password];
-    
+
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:controller.view animated:YES];
+    hud.labelText = NSLocalizedString(@"Performing login ...",@"progresshud login message");
     [self.repository getDataForCommand:command completion:^BOOL(NSString *identifier, NSObject *object, NSError *__autoreleasing *error) {
         
-        if(error==nil){
+        [MBProgressHUD hideHUDForView:controller.view animated:YES];
+        
+        if(error){
+            [self.messagePresenter showErrorMessageWithTitle:(*error).localizedDescription callback:nil];
+        } else{
             NSObject<IVISPERRoutingOption> *option = [self.wireframe presentRootVCRoutingOption:YES];
         
             [self.wireframe routeURL:self.successRoute

@@ -18,8 +18,6 @@
                     repository:(NSObject <IVISPERRepository> *)repository
                   successRoute:(NSURL*)successRoute
             successRouteParams:(NSDictionary*)successRouteParams
-                  failureRoute:(NSURL*)failureRoute
-            failureRouteParams:(NSDictionary*)failureRouteParams
            forgotPasswordRoute:(NSURL*)forgotPasswordRoute
      forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams;
 

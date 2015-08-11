@@ -17,6 +17,8 @@
 #import "ForgotPasswordViewController.h"
 #import "JBAppDelegate.h"
 #import <UIColor_HTMLColors/UIColor+HTMLColors.h>
+#import "JBDummyLoginRepository.h"
+#import "JBDummyGetTitleRepository.h"
 
 @implementation JBAppDelegate
 
@@ -39,6 +41,10 @@
 
     
     VISPERComposedRepository *repository = [[VISPERComposedRepository alloc] init];
+    JBDummyLoginRepository *loginRepository = [[JBDummyLoginRepository alloc] initWithIdentifier:@"dummyLogin"];
+    [repository addRepository:loginRepository];
+    JBDummyGetTitleRepository *titleRepository = [[JBDummyGetTitleRepository alloc] initWithIdentifier:@"dummyLoginTitle"];
+    [repository addRepository:titleRepository];
     
     VISPERComposedPersistenceStore *store = [[VISPERComposedPersistenceStore alloc] init];
     
@@ -48,8 +54,6 @@
              persistenceStore:store
                  successRoute:[NSURL URLWithString:@"/login-success"]
            successRouteParams:@{}
-                 failureRoute:[NSURL URLWithString:@"/login-failure"]
-           failureRouteParams:@{}
           forgotPasswordRoute:[NSURL URLWithString:@"/forgetPassword"]
     forgotPasswordRouteParams:@{}];
     

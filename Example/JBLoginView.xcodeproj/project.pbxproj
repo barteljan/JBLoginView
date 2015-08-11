@@ -19,6 +19,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		9A6D602B1B7A180C0021DA02 /* JBDummyGetTitleRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6D602A1B7A180C0021DA02 /* JBDummyGetTitleRepository.m */; };
 		9A7A58151B6ECDB500808499 /* SuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7A58131B6ECDB500808499 /* SuccessViewController.m */; };
 		9A7A58161B6ECDB500808499 /* SuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A7A58141B6ECDB500808499 /* SuccessViewController.xib */; };
 		9A7A581A1B6ECDD400808499 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7A58181B6ECDD400808499 /* ForgotPasswordViewController.m */; };
@@ -60,6 +61,8 @@
 		737C50DC79022C0FA24FB7DC /* Pods_JBLoginView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JBLoginView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AACADFA497115BF65A5C450 /* Pods-JBLoginView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JBLoginView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JBLoginView_Tests/Pods-JBLoginView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		96EE4BE2BDE4F74EB5BCCE6B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		9A6D60291B7A180C0021DA02 /* JBDummyGetTitleRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBDummyGetTitleRepository.h; sourceTree = "<group>"; };
+		9A6D602A1B7A180C0021DA02 /* JBDummyGetTitleRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBDummyGetTitleRepository.m; sourceTree = "<group>"; };
 		9A7A58121B6ECDB500808499 /* SuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuccessViewController.h; sourceTree = "<group>"; };
 		9A7A58131B6ECDB500808499 /* SuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuccessViewController.m; sourceTree = "<group>"; };
 		9A7A58141B6ECDB500808499 /* SuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuccessViewController.xib; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 				9A7A58191B6ECDD400808499 /* ForgotPasswordViewController.xib */,
 				9A9A2E671B78F5DE002DD689 /* JBDummyLoginRepository.h */,
 				9A9A2E681B78F5DE002DD689 /* JBDummyLoginRepository.m */,
+				9A6D60291B7A180C0021DA02 /* JBDummyGetTitleRepository.h */,
+				9A6D602A1B7A180C0021DA02 /* JBDummyGetTitleRepository.m */,
 			);
 			name = "Example for JBLoginView";
 			path = JBLoginView;
@@ -413,6 +418,7 @@
 			files = (
 				9A7A581A1B6ECDD400808499 /* ForgotPasswordViewController.m in Sources */,
 				9AC1DBA01B6B77D700F36A58 /* JBAppDelegate.m in Sources */,
+				9A6D602B1B7A180C0021DA02 /* JBDummyGetTitleRepository.m in Sources */,
 				9A9A2E691B78F5DE002DD689 /* JBDummyLoginRepository.m in Sources */,
 				9A7A58151B6ECDB500808499 /* SuccessViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

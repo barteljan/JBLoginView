@@ -9,6 +9,20 @@
 #import "JBLoginScreenComposedApplication.h"
 #import "LoginWireframeControllerServiceProvider.h"
 
+@interface JBLoginScreenComposedApplication()
+
+@property (nonatomic) NSObject<IVISPERWireframe> *wireframe;
+@property (nonatomic) NSObject<IVISPERComposedPersistenceStore> *persistenceStore;
+@property (nonatomic) NSObject<IVISPERComposedRepository> *repository;
+
+@property (nonatomic) NSURL *successRoute;
+@property (nonatomic) NSDictionary *successRouteParams;
+
+@property (nonatomic) NSURL *forgotPasswordRoute;
+@property (nonatomic) NSDictionary *forgotPasswordRouteParams;
+
+@end
+
 @implementation JBLoginScreenComposedApplication
 
 -(id)initWithWireframe:(NSObject <IVISPERWireframe> *)wireframe
@@ -16,8 +30,6 @@
          persistenceStore:(NSObject <IVISPERComposedPersistenceStore> *)persistenceStore
              successRoute:(NSURL *)successRoute
        successRouteParams:(NSDictionary *)successRouteParams
-             failureRoute:(NSURL *)failureRoute
-       failureRouteParams:(NSDictionary *)failureRouteParams
       forgotPasswordRoute:(NSURL *)forgotPasswordRoute
 forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
     
@@ -28,8 +40,6 @@ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
         self->_persistenceStore             = persistenceStore;
         self->_successRoute                 = successRoute;
         self->_successRouteParams           = successRouteParams;
-        self->_failureRoute                 = failureRoute;
-        self->_failureRouteParams           = failureRouteParams;
         self->_forgotPasswordRoute          = forgotPasswordRoute;
         self->_forgotPasswordRouteParams    = forgotPasswordRouteParams;
         self->_wireframe = wireframe;
@@ -53,8 +63,6 @@ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
                                                                    repository:repository
                                                                    successRoute:self.successRoute
                                                                    successRouteParams:self.successRouteParams
-                                                                   failureRoute:self.failureRoute
-                                                                   failureRouteParams:self.failureRouteParams
                                                                    forgotPasswordRoute:self.forgotPasswordRoute
                                                                    forgotPasswordRouteParams:self.forgotPasswordRouteParams];
     

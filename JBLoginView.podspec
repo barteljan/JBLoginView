@@ -27,5 +27,8 @@ Pod::Spec.new do |s|
   s.dependency 'VISPERComposedApplication'
   s.dependency 'UIColor-HTMLColors'
   s.dependency 'JBLoginDataCommands'
+  s.dependency 'MBProgressHUD'
+  s.dependency 'TSMessages'
+  s.dependency 'BlocksKit'
 
 end

@@ -13,4 +13,13 @@
 -(NSString*)username;
 -(NSString*)password;
 
+-(void)showForgotPasswordButton:(BOOL)showButton;
+-(void)showTitle:(BOOL)showTitle;
+
+-(void)setTitleText:(NSString*)titleText;
+-(NSString*)titleText;
+
+-(void)setSubTitleText:(NSString*)titleText;
+-(NSString*)subTitleText;
+
 @end
