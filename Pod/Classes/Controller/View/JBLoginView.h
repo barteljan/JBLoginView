@@ -12,10 +12,10 @@
 
 @interface JBLoginView : UIView<IJBLoginView>
 
-@property(nonatomic)UIColor *mainColor;
-@property(nonatomic)UIColor *darkColor;
-@property(nonatomic)NSString *fontName;
-@property(nonatomic)NSString *boldFontName;
+@property(nonatomic) UI_APPEARANCE_SELECTOR UIColor *mainColor;
+@property(nonatomic) UI_APPEARANCE_SELECTOR UIColor *darkColor;
+@property(nonatomic) UI_APPEARANCE_SELECTOR NSString *fontName;
+@property(nonatomic) UI_APPEARANCE_SELECTOR NSString *boldFontName;
 
 @property (nonatomic, weak) IBOutlet UITextField * usernameField;
 @property (nonatomic, weak) IBOutlet UITextField * passwordField;

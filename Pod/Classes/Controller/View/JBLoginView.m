@@ -10,9 +10,12 @@
 #import "UIColor+HTMLColors.h"
 #import <PureLayout/PureLayout.h>
 
-@interface JBLoginView()
+@interface JBLoginView(){
+    BOOL _didStyleUI;
+}
 
 @property(nonatomic)NSMutableArray *constraintsToRemove;
+
 
 
 @end
@@ -23,14 +26,25 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if(self){
-        [self bootstrapView];
+      
     }
     return self;
 }
 
--(void)setUsernameField:(UITextField *)usernameField{
-    self->_usernameField = usernameField;
+-(void)styleUI{
     
+    //style self
+    self.backgroundColor = self.mainColor;
+    
+    //style title label
+    self.titleLabel.textColor =  [UIColor whiteColor];
+    self.titleLabel.font =  [UIFont fontWithName:self.boldFontName size:24.0f];
+    
+    //style subtitle label
+    self.subTitleLabel.textColor =  [UIColor whiteColor];
+    self.subTitleLabel.font =  [UIFont fontWithName:self.fontName size:14.0f];
+    
+    //style username field
     self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.layer.cornerRadius = 3.0f;
     self.usernameField.leftViewMode = UITextFieldViewModeAlways;
@@ -38,21 +52,8 @@
     self.usernameField.leftView = leftView1;
     self.usernameField.font = [UIFont fontWithName:self.fontName size:16.0f];
     self.usernameField.placeholder = NSLocalizedString(@"Username",@"username placeholder text");
-}
-
--(void)setLoginButton:(UIButton *)loginButton{
-    self->_loginButton = loginButton;
     
-    self.loginButton.backgroundColor = self.darkColor;
-    self.loginButton.layer.cornerRadius = 3.0f;
-    self.loginButton.titleLabel.font = [UIFont fontWithName:self.boldFontName size:20.0f];
-    [self.loginButton setTitle:NSLocalizedString(@"Login",@"Loginbutton Text") forState:UIControlStateNormal];
-    [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
-}
-
--(void)setPasswordField:(UITextField *)passwordField{
-    self->_passwordField = passwordField;
+    //style password label
     self.passwordField.layer.cornerRadius = 3.0f;
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     UIView* leftView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
@@ -61,45 +62,31 @@
     self.passwordField.placeholder = NSLocalizedString(@"Password",@"password placeholder text");
     self.passwordField.backgroundColor = [UIColor whiteColor];
     self.passwordField.secureTextEntry = YES;
-}
-
--(void)setForgotButton:(UIButton *)forgotButton{
-    self->_forgotButton = forgotButton;
     
+    //style login button
+    self.loginButton.backgroundColor = self.darkColor;
+    self.loginButton.layer.cornerRadius = 3.0f;
+    self.loginButton.titleLabel.font = [UIFont fontWithName:self.boldFontName size:20.0f];
+    [self.loginButton setTitle:NSLocalizedString(@"Login",@"Loginbutton Text") forState:UIControlStateNormal];
+    [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
+    
+    //style forgot button
     self.forgotButton.backgroundColor = [UIColor clearColor];
     self.forgotButton.titleLabel.font = [UIFont fontWithName:self.fontName size:12.0f];
     [self.forgotButton setTitle:NSLocalizedString(@"Forgot password?",@"forgot password button text") forState:UIControlStateNormal];
     [self.forgotButton setTitleColor:self.darkColor forState:UIControlStateNormal];
     [self.forgotButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5] forState:UIControlStateHighlighted];
-
-}
-
--(void)setTitleLabel:(UILabel *)titleLabel{
-    self->_titleLabel = titleLabel;
-    self.titleLabel.textColor =  [UIColor whiteColor];
-    self.titleLabel.font =  [UIFont fontWithName:self.boldFontName size:24.0f];
-}
-
--(void)setSubTitleLabel:(UILabel *)subTitleLabel{
-    self->_subTitleLabel = subTitleLabel;
-
-    self.subTitleLabel.textColor =  [UIColor whiteColor];
-    self.subTitleLabel.font =  [UIFont fontWithName:self.fontName size:14.0f];
-}
-
--(void)bootstrapView{
-    self.mainColor = [UIColor colorWithCSS:@"#F18975"];
-    self.darkColor = [UIColor colorWithCSS:@"#705853"];
     
-    self.fontName = @"Optima-Italic";
-    self.boldFontName = @"Optima-ExtraBlack";
-    
-    self.backgroundColor = self.mainColor;
-    
+    _didStyleUI = TRUE;
 }
 
 -(void)updateConstraints{
     [super updateConstraints];
+    
+    if(!_didStyleUI){
+        [self styleUI];
+    }
     
     if(self.constraintsToRemove && [self.constraintsToRemove count] > 0){
         [self.constraintsToRemove autoRemoveConstraints];

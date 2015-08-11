@@ -1,4 +1,4 @@
-//
+////
 //  JBAppDelegate.m
 //  JBLogin
 //
@@ -19,13 +19,16 @@
 #import <UIColor_HTMLColors/UIColor+HTMLColors.h>
 #import "JBDummyLoginRepository.h"
 #import "JBDummyGetTitleRepository.h"
+#import <JBLoginView/JBLoginView.h>
 
 @implementation JBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [UINavigationBar appearance].tintColor = [UIColor colorWithCSS:@"#705853"];
     
+    [self initializeUIAppeareance];
+    
+    //setup visper application
     self.wireframe = [[VISPERWireframe alloc] init];
     
     [self.wireframe addControllerServiceProvider:self withPriority:0];
@@ -41,13 +44,21 @@
 
     
     VISPERComposedRepository *repository = [[VISPERComposedRepository alloc] init];
+    VISPERComposedPersistenceStore *store = [[VISPERComposedPersistenceStore alloc] init];
+    
+    //add two dummy repositories for mocking the environments responses
     JBDummyLoginRepository *loginRepository = [[JBDummyLoginRepository alloc] initWithIdentifier:@"dummyLogin"];
     [repository addRepository:loginRepository];
     JBDummyGetTitleRepository *titleRepository = [[JBDummyGetTitleRepository alloc] initWithIdentifier:@"dummyLoginTitle"];
     [repository addRepository:titleRepository];
     
-    VISPERComposedPersistenceStore *store = [[VISPERComposedPersistenceStore alloc] init];
     
+    //add two routes to navigate when login has been done
+    [self.wireframe addRoute:@"/login-success"];
+    [self.wireframe addRoute:@"/forgetPassword"];
+    
+    
+    //generate JBLoginScreenApplication
     self.composedApplication = [[JBLoginScreenComposedApplication alloc]
             initWithWireframe:self.wireframe
                    repository:repository
@@ -57,19 +68,31 @@
           forgotPasswordRoute:[NSURL URLWithString:@"/forgetPassword"]
     forgotPasswordRouteParams:@{}];
     
-    [self.wireframe addRoute:@"/login-success"];
-    [self.wireframe addRoute:@"/login-failure"];
-    [self.wireframe addRoute:@"/forgetPassword"];
     
+    //let JBLoginScreenApplication initialize visper application
     [self.composedApplication bootstrapWireframe:self.wireframe
                                       repository:repository
                                 persistenceStore:store];
     
+    //route to the login view
     [self.wireframe routeURL:[NSURL URLWithString:self.composedApplication.startingRoute]];
     
     return YES;
 }
 
+
+-(void)initializeUIAppeareance{
+    
+    
+    [UINavigationBar appearance].tintColor = [UIColor colorWithCSS:@"#705853"];
+    
+    [JBLoginView appearance].mainColor = [UIColor colorWithCSS:@"#F18975"];
+    [JBLoginView appearance].darkColor = [UIColor colorWithCSS:@"#705853"];
+    [JBLoginView appearance].fontName = @"Optima-Italic";
+    [JBLoginView appearance].boldFontName = @"Optima-ExtraBlack";
+    
+    
+}
 
 -(UIViewController*)controllerForRoute:(NSString *)routePattern
                         routingOptions:(NSObject<IVISPERRoutingOption> *)options
