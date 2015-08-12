@@ -103,12 +103,6 @@
 
 -(void)styleUI{
     
-    //style title label
-    self.titleLabel.textColor =  [UIColor whiteColor];
-    
-    //style subtitle label
-    self.subTitleLabel.textColor =  [UIColor whiteColor];
-    
     //style username field
     self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.layer.cornerRadius = 3.0f;
