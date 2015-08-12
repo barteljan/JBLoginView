@@ -7,7 +7,6 @@
 //
 
 #import "JBLoginView.h"
-#import "UIColor+HTMLColors.h"
 #import <PureLayout/PureLayout.h>
 
 @interface JBLoginView(){
@@ -31,18 +30,85 @@
     return self;
 }
 
--(void)styleUI{
+
+-(void)setMainColor:(UIColor *)mainColor{
+    self->_mainColor = mainColor;
     
     //style self
     self.backgroundColor = self.mainColor;
+}
+
+
+-(void)setFontName:(NSString *)fontName{
+    self->_fontName = fontName;
+    
+    //style subtitle label
+    self.subTitleLabel.font =  [UIFont fontWithName:self.fontName size:14.0f];
+    
+    
+    //style username field
+    self.usernameField.font = [UIFont fontWithName:self.fontName size:16.0f];
+    
+    
+    //style password field
+    self.passwordField.font = [UIFont fontWithName:self.fontName size:16.0f];
+    
+    
+    
+    //style forgot button
+    self.forgotButton.titleLabel.font = [UIFont fontWithName:self.fontName size:12.0f];
+    
+}
+
+-(void)setBoldFontName:(NSString *)boldFontName{
+    self->_boldFontName = boldFontName;
+    
+    //style title label
+    self.titleLabel.font =  [UIFont fontWithName:self.boldFontName size:24.0f];
+    
+    
+    //style login button
+    self.loginButton.titleLabel.font = [UIFont fontWithName:self.boldFontName size:20.0f];
+}
+
+
+-(void)setDarkColor:(UIColor *)darkColor{
+    self->_darkColor = darkColor;
+    
+    //style login button
+    self.loginButton.backgroundColor = self.darkColor;
+    
+    //style forgot button
+    [self.forgotButton setTitleColor:self.darkColor forState:UIControlStateNormal];
+}
+
+
+-(void)setDarkFontColor:(UIColor *)darkFontColor{
+    self->_darkFontColor = darkFontColor;
+
+    //style login button
+    [self.loginButton setTitleColor:darkFontColor forState:UIControlStateNormal];
+    [self.loginButton setTitleColor:[darkFontColor colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
+}
+
+
+-(void)setMainFontColor:(UIColor *)mainFontColor{
+    self->_mainFontColor = mainFontColor;
+    
+    //style title label
+    [self.titleLabel setTextColor:mainFontColor];
+    
+    //style subtitle label
+    [self.subTitleLabel setTextColor:mainFontColor];
+}
+
+-(void)styleUI{
     
     //style title label
     self.titleLabel.textColor =  [UIColor whiteColor];
-    self.titleLabel.font =  [UIFont fontWithName:self.boldFontName size:24.0f];
     
     //style subtitle label
     self.subTitleLabel.textColor =  [UIColor whiteColor];
-    self.subTitleLabel.font =  [UIFont fontWithName:self.fontName size:14.0f];
     
     //style username field
     self.usernameField.backgroundColor = [UIColor whiteColor];
@@ -50,7 +116,7 @@
     self.usernameField.leftViewMode = UITextFieldViewModeAlways;
     UIView* leftView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     self.usernameField.leftView = leftView1;
-    self.usernameField.font = [UIFont fontWithName:self.fontName size:16.0f];
+
     self.usernameField.placeholder = NSLocalizedString(@"Username",@"username placeholder text");
     
     //style password label
@@ -58,24 +124,18 @@
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     UIView* leftView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     self.passwordField.leftView = leftView2;
-    self.passwordField.font = [UIFont fontWithName:self.fontName size:16.0f];
     self.passwordField.placeholder = NSLocalizedString(@"Password",@"password placeholder text");
     self.passwordField.backgroundColor = [UIColor whiteColor];
     self.passwordField.secureTextEntry = YES;
     
     //style login button
-    self.loginButton.backgroundColor = self.darkColor;
     self.loginButton.layer.cornerRadius = 3.0f;
-    self.loginButton.titleLabel.font = [UIFont fontWithName:self.boldFontName size:20.0f];
     [self.loginButton setTitle:NSLocalizedString(@"Login",@"Loginbutton Text") forState:UIControlStateNormal];
-    [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
+    
     
     //style forgot button
     self.forgotButton.backgroundColor = [UIColor clearColor];
-    self.forgotButton.titleLabel.font = [UIFont fontWithName:self.fontName size:12.0f];
     [self.forgotButton setTitle:NSLocalizedString(@"Forgot password?",@"forgot password button text") forState:UIControlStateNormal];
-    [self.forgotButton setTitleColor:self.darkColor forState:UIControlStateNormal];
     [self.forgotButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5] forState:UIControlStateHighlighted];
     
     _didStyleUI = TRUE;

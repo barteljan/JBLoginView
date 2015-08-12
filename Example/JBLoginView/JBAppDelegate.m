@@ -90,6 +90,8 @@
     [JBLoginView appearance].darkColor = [UIColor colorWithCSS:@"#705853"];
     [JBLoginView appearance].fontName = @"Optima-Italic";
     [JBLoginView appearance].boldFontName = @"Optima-ExtraBlack";
+    [JBLoginView appearance].mainFontColor = [UIColor whiteColor];
+    [JBLoginView appearance].darkFontColor = [UIColor whiteColor];
     
     
 }

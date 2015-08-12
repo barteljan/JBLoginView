@@ -16,13 +16,12 @@ PODS:
     - BlocksKit/DynamicDelegate
   - HexColors (2.2.1)
   - JBLoginDataCommands (0.1.5)
-  - JBLoginView (0.1.5):
+  - JBLoginView (0.1.6):
     - BlocksKit
     - JBLoginDataCommands
     - MBProgressHUD
     - PureLayout
     - TSMessages
-    - UIColor-HTMLColors
     - VISPER
     - VISPERComposedApplication
   - JLRoutes (1.5.2)
@@ -40,6 +39,7 @@ PODS:
 DEPENDENCIES:
   - JBLoginView (from `../`)
   - Kiwi
+  - UIColor-HTMLColors
 
 EXTERNAL SOURCES:
   JBLoginView:
@@ -49,7 +49,7 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   JBLoginDataCommands: f659d38a97195c6ea02f086e120d8fc9ae366d55
-  JBLoginView: d632c7c609a4b0faa7fde5f9a2d7c878c739336e
+  JBLoginView: ebaafec8596dcfd69fe22dc0cc2d597f42d68c25
   JLRoutes: fc36fd38ab476d5ac3a6a84b05be60e4b1a2bc81
   Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
