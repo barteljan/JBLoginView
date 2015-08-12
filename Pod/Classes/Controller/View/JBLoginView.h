@@ -16,9 +16,16 @@
 @property(nonatomic) UI_APPEARANCE_SELECTOR UIColor *mainFontColor;
 @property(nonatomic) UI_APPEARANCE_SELECTOR UIColor *darkColor;
 @property(nonatomic) UI_APPEARANCE_SELECTOR UIColor *darkFontColor;
-@property(nonatomic) UI_APPEARANCE_SELECTOR NSString *fontName;
-@property(nonatomic) UI_APPEARANCE_SELECTOR NSString *boldFontName;
+//@property(nonatomic) UI_APPEARANCE_SELECTOR NSString *fontName;
+//@property(nonatomic) UI_APPEARANCE_SELECTOR NSString *boldFontName;
 
+
+@property(nonatomic) UI_APPEARANCE_SELECTOR UIFont *titleFont;
+@property(nonatomic) UI_APPEARANCE_SELECTOR UIFont *subTitleFont;
+@property(nonatomic) UI_APPEARANCE_SELECTOR UIFont *usernameFont;
+@property(nonatomic) UI_APPEARANCE_SELECTOR UIFont *passwordFont;
+@property(nonatomic) UI_APPEARANCE_SELECTOR UIFont *loginButtonFont;
+@property(nonatomic) UI_APPEARANCE_SELECTOR UIFont *forgetButtonFont;
 
 @property (nonatomic, weak) IBOutlet UITextField * usernameField;
 @property (nonatomic, weak) IBOutlet UITextField * passwordField;

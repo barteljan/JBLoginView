@@ -88,10 +88,15 @@
     
     [JBLoginView appearance].mainColor = [UIColor colorWithCSS:@"#F18975"];
     [JBLoginView appearance].darkColor = [UIColor colorWithCSS:@"#705853"];
-    [JBLoginView appearance].fontName = @"Optima-Italic";
-    [JBLoginView appearance].boldFontName = @"Optima-ExtraBlack";
     [JBLoginView appearance].mainFontColor = [UIColor whiteColor];
     [JBLoginView appearance].darkFontColor = [UIColor whiteColor];
+    
+    [JBLoginView appearance].titleFont = [UIFont fontWithName:@"Optima-ExtraBlack" size:24.0f];
+    [JBLoginView appearance].loginButtonFont = [UIFont fontWithName:@"Optima-ExtraBlack" size:20.0f];
+    [JBLoginView appearance].subTitleFont = [UIFont fontWithName:@"Optima-Italic" size:14.0f];
+    [JBLoginView appearance].usernameFont = [UIFont fontWithName:@"Optima-Italic" size:16.0f];
+    [JBLoginView appearance].passwordFont = [UIFont fontWithName:@"Optima-Italic" size:16.0f];
+    [JBLoginView appearance].forgetButtonFont = [UIFont fontWithName:@"Optima-Italic" size:12.0f];
     
     
 }

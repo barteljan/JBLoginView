@@ -39,6 +39,37 @@
 }
 
 
+-(void)setTitleFont:(UIFont *)titleFont{
+    self->_titleFont = titleFont;
+    self.titleLabel.font = titleFont;
+}
+
+-(void)setSubTitleFont:(UIFont *)subTitleFont{
+    self->_subTitleFont = subTitleFont;
+    self.subTitleLabel.font = subTitleFont;
+}
+
+-(void)setUsernameFont:(UIFont *)usernameFont{
+    self->_usernameFont = usernameFont;
+    self.usernameField.font = usernameFont;
+}
+
+-(void)setPasswordFont:(UIFont *)passwordFont{
+    self->_passwordFont = passwordFont;
+    self.passwordField.font = passwordFont;
+}
+
+-(void)setLoginButtonFont:(UIFont *)loginButtonFont{
+    self->_loginButtonFont = loginButtonFont;
+    self.loginButton.titleLabel.font = loginButtonFont;
+}
+
+-(void)setForgetButtonFont:(UIFont *)forgetButtonFont{
+    self->_forgetButtonFont = forgetButtonFont;
+    self.forgotButton.titleLabel.font = forgetButtonFont;
+}
+
+/*
 -(void)setFontName:(NSString *)fontName{
     self->_fontName = fontName;
     
@@ -71,6 +102,7 @@
     self.loginButton.titleLabel.font = [UIFont fontWithName:self.boldFontName size:20.0f];
 }
 
+*/
 
 -(void)setDarkColor:(UIColor *)darkColor{
     self->_darkColor = darkColor;
