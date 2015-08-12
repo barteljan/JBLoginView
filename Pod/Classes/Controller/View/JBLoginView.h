@@ -16,8 +16,6 @@
 @property(nonatomic) UI_APPEARANCE_SELECTOR UIColor *mainFontColor;
 @property(nonatomic) UI_APPEARANCE_SELECTOR UIColor *darkColor;
 @property(nonatomic) UI_APPEARANCE_SELECTOR UIColor *darkFontColor;
-//@property(nonatomic) UI_APPEARANCE_SELECTOR NSString *fontName;
-//@property(nonatomic) UI_APPEARANCE_SELECTOR NSString *boldFontName;
 
 
 @property(nonatomic) UI_APPEARANCE_SELECTOR UIFont *titleFont;

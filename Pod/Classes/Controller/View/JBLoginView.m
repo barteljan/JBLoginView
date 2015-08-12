@@ -69,40 +69,7 @@
     self.forgotButton.titleLabel.font = forgetButtonFont;
 }
 
-/*
--(void)setFontName:(NSString *)fontName{
-    self->_fontName = fontName;
-    
-    //style subtitle label
-    self.subTitleLabel.font =  [UIFont fontWithName:self.fontName size:14.0f];
-    
-    
-    //style username field
-    self.usernameField.font = [UIFont fontWithName:self.fontName size:16.0f];
-    
-    
-    //style password field
-    self.passwordField.font = [UIFont fontWithName:self.fontName size:16.0f];
-    
-    
-    
-    //style forgot button
-    self.forgotButton.titleLabel.font = [UIFont fontWithName:self.fontName size:12.0f];
-    
-}
 
--(void)setBoldFontName:(NSString *)boldFontName{
-    self->_boldFontName = boldFontName;
-    
-    //style title label
-    self.titleLabel.font =  [UIFont fontWithName:self.boldFontName size:24.0f];
-    
-    
-    //style login button
-    self.loginButton.titleLabel.font = [UIFont fontWithName:self.boldFontName size:20.0f];
-}
-
-*/
 
 -(void)setDarkColor:(UIColor *)darkColor{
     self->_darkColor = darkColor;
