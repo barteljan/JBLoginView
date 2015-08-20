@@ -7,12 +7,11 @@
 //
 
 #import <VISPER/VISPERWireframe.h>
-#import <VISPER/VISPERComposedRepository.h>
-#import <VISPER/VISPERComposedPersistenceStore.h>
-#import <JBLoginView/JBLoginScreenComposedApplication.h>
+#import <JBLoginView/JBLoginViewFeature.h>
 #import <VISPER/VISPERModalRoutingPresenter.h>
 #import <VISPER/VISPERPushRoutingPresenter.h>
 #import <VISPER/VISPERRootVCRoutingPresenter.h>
+#import <VISPER/VISPERComposedInteractor.h>
 #import "SuccessViewController.h"
 #import "ForgotPasswordViewController.h"
 #import "JBAppDelegate.h"
@@ -43,14 +42,13 @@
                            withPriority:0];
 
     
-    VISPERComposedRepository *repository = [[VISPERComposedRepository alloc] init];
-    VISPERComposedPersistenceStore *store = [[VISPERComposedPersistenceStore alloc] init];
+    VISPERComposedInteractor *interactor = [[VISPERComposedInteractor alloc] init];
     
     //add two dummy repositories for mocking the environments responses
     JBDummyLoginRepository *loginRepository = [[JBDummyLoginRepository alloc] initWithIdentifier:@"dummyLogin"];
-    [repository addRepository:loginRepository];
+    [interactor addInteractor:loginRepository];
     JBDummyGetTitleRepository *titleRepository = [[JBDummyGetTitleRepository alloc] initWithIdentifier:@"dummyLoginTitle"];
-    [repository addRepository:titleRepository];
+    [interactor addInteractor:titleRepository];
     
     
     //add two routes to navigate when login has been done
@@ -59,10 +57,8 @@
     
     
     //generate JBLoginScreenApplication
-    self.composedApplication = [[JBLoginScreenComposedApplication alloc]
+    self.composedApplication = [[JBLoginViewFeature alloc]
             initWithWireframe:self.wireframe
-                   repository:repository
-             persistenceStore:store
                  successRoute:[NSURL URLWithString:@"/login-success"]
            successRouteParams:@{}
           forgotPasswordRoute:[NSURL URLWithString:@"/forgetPassword"]
@@ -71,8 +67,7 @@
     
     //let JBLoginScreenApplication initialize visper application
     [self.composedApplication bootstrapWireframe:self.wireframe
-                                      repository:repository
-                                persistenceStore:store];
+                                      interactor:interactor];
     
     //route to the login view
     [self.wireframe routeURL:[NSURL URLWithString:self.composedApplication.startingRoute]];

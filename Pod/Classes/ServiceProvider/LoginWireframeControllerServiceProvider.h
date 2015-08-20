@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <VISPER/IVISPERWireframeViewControllerServiceProvider.h>
 #import <VISPER/IVISPERWireframe.h>
-#import <VISPER/IVISPERRepository.h>
+#import <VISPER/IVISPERInteractor.h>
 @interface LoginWireframeControllerServiceProvider : NSObject<IVISPERWireframeViewControllerServiceProvider>
 
 
 -(id)initWithLoginRoutePattern:(NSString*)routePattern
                      wireframe:(NSObject<IVISPERWireframe>*)wireframe
-                    repository:(NSObject <IVISPERRepository> *)repository
+                    interactor:(NSObject<IVISPERInteractor> *)interactor
                   successRoute:(NSURL*)successRoute
             successRouteParams:(NSDictionary*)successRouteParams
            forgotPasswordRoute:(NSURL*)forgotPasswordRoute

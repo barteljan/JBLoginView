@@ -16,7 +16,7 @@ PODS:
     - BlocksKit/DynamicDelegate
   - HexColors (2.2.1)
   - JBLoginDataCommands (0.1.5)
-  - JBLoginView (0.1.11):
+  - JBLoginView (0.1.12):
     - BlocksKit
     - JBLoginDataCommands
     - MBProgressHUD
@@ -49,7 +49,7 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   JBLoginDataCommands: f659d38a97195c6ea02f086e120d8fc9ae366d55
-  JBLoginView: 7c16e7ab5eea6ee45920a5b7d8547c856b1a49aa
+  JBLoginView: 1363558d1ef7ef2f94d9c18fae7d8b9828898cf3
   JLRoutes: fc36fd38ab476d5ac3a6a84b05be60e4b1a2bc81
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad

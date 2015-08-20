@@ -1,19 +1,18 @@
 //
-//  JBLoginScreenComposedApplication.m
+//  JBLoginViewFeature.m
 //  Pods
 //
 //  Created by Bartel on 30.07.15.
 //
 //
 
-#import "JBLoginScreenComposedApplication.h"
+#import "JBLoginViewFeature.h"
 #import "LoginWireframeControllerServiceProvider.h"
 
-@interface JBLoginScreenComposedApplication()
+@interface JBLoginViewFeature ()
 
 @property (nonatomic) NSObject<IVISPERWireframe> *wireframe;
-@property (nonatomic) NSObject<IVISPERComposedPersistenceStore> *persistenceStore;
-@property (nonatomic) NSObject<IVISPERComposedRepository> *repository;
+
 
 @property (nonatomic) NSURL *successRoute;
 @property (nonatomic) NSDictionary *successRouteParams;
@@ -23,11 +22,9 @@
 
 @end
 
-@implementation JBLoginScreenComposedApplication
+@implementation JBLoginViewFeature
 
 -(id)initWithWireframe:(NSObject <IVISPERWireframe> *)wireframe
-               repository:(NSObject <IVISPERComposedRepository> *)repository
-         persistenceStore:(NSObject <IVISPERComposedPersistenceStore> *)persistenceStore
              successRoute:(NSURL *)successRoute
        successRouteParams:(NSDictionary *)successRouteParams
       forgotPasswordRoute:(NSURL *)forgotPasswordRoute
@@ -36,8 +33,6 @@ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
     self = [super init];
     
     if(self){
-        self->_repository                   = repository;
-        self->_persistenceStore             = persistenceStore;
         self->_successRoute                 = successRoute;
         self->_successRouteParams           = successRouteParams;
         self->_forgotPasswordRoute          = forgotPasswordRoute;
@@ -48,19 +43,22 @@ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
     return self;
 }
 
+-(NSArray*)routePatterns{
+    return [NSArray arrayWithObject:[self startingRoute]];
+}
+
 -(NSString*)startingRoute{
     return @"/login";
 }
 
+
 -(void)bootstrapWireframe:(NSObject<IVISPERWireframe> *)wireframe
-               repository:(NSObject<IVISPERComposedRepository> *)repository
-         persistenceStore:(NSObject<IVISPERComposedPersistenceStore> *)persistenceStore{
-    
+               interactor:(NSObject<IVISPERComposedInteractor> *)interactor{
     
     LoginWireframeControllerServiceProvider *controllerProvider = [[LoginWireframeControllerServiceProvider alloc]
                                                                    initWithLoginRoutePattern:self.startingRoute
                                                                    wireframe:wireframe
-                                                                   repository:repository
+                                                                   interactor:interactor
                                                                    successRoute:self.successRoute
                                                                    successRouteParams:self.successRouteParams
                                                                    forgotPasswordRoute:self.forgotPasswordRoute

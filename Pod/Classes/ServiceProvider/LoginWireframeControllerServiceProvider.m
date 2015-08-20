@@ -19,7 +19,7 @@
 @property(nonatomic)NSDictionary *successRouteParams;
 @property (nonatomic) NSURL *forgotPasswordRoute;
 @property (nonatomic) NSDictionary *forgotPasswordRouteParams;
-@property (nonatomic) NSObject <IVISPERRepository> *repository;
+@property (nonatomic) NSObject <IVISPERInteractor> *interactor;
 @end
 
 
@@ -27,7 +27,7 @@
 
 -(id)initWithLoginRoutePattern:(NSString*)routePattern
                      wireframe:(NSObject<IVISPERWireframe>*)wireframe
-                    repository:(NSObject <IVISPERRepository> *)repository
+                    interactor:(NSObject<IVISPERInteractor> *)interactor
                   successRoute:(NSURL*)successRoute
             successRouteParams:(NSDictionary*)successRouteParams
            forgotPasswordRoute:(NSURL*)forgotPasswordRoute
@@ -36,7 +36,7 @@
     if(self){
         self->_loginRoutePattern         = routePattern;
         self->_wireframe                 = wireframe;
-        self->_repository                = repository;
+        self->_interactor                = interactor;
         self->_successRoute              = successRoute;
         self->_successRouteParams        = successRouteParams;
         self->_forgotPasswordRoute       = forgotPasswordRoute;
@@ -58,7 +58,7 @@
         JBLoginMessagePresenter *messagePresenter = [[JBLoginMessagePresenter alloc] initWithViewController:controller];
         
         JBLoginViewControllerPresenter *presenter = [[JBLoginViewControllerPresenter alloc] initWithWireframe:self.wireframe
-                                                                                                   repository:self.repository
+                                                                                                   interactor:self.interactor
                                                                                              messagePresenter:messagePresenter
                                                                                             loginSuccessRoute:self.successRoute
                                                                                            successRouteParams:self.successRouteParams

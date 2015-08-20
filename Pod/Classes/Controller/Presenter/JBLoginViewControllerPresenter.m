@@ -20,7 +20,7 @@
 @property (nonatomic) NSDictionary *successRouteParams;
 @property (nonatomic) NSURL *forgotPasswordRoute;
 @property (nonatomic) NSDictionary *forgotPasswordRouteParams;
-@property (nonatomic) NSObject <IVISPERRepository> *repository;
+@property (nonatomic) NSObject <IVISPERInteractor> *interactor;
 @property (nonatomic) NSObject<IJBLoginMessagePresenter> *messagePresenter;
 
 @end
@@ -28,7 +28,7 @@
 @implementation JBLoginViewControllerPresenter
 
 -(id)initWithWireframe:(NSObject<IVISPERWireframe>*)wireframe
-            repository:(NSObject <IVISPERRepository> *)repository
+            interactor:(NSObject<IVISPERInteractor> *)interactor
       messagePresenter:(NSObject<IJBLoginMessagePresenter>*)messagePresenter
      loginSuccessRoute:(NSURL*)successRoute
     successRouteParams:(NSDictionary*)successRouteParams
@@ -36,7 +36,7 @@
 forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
     self = [super initWithWireframe:wireframe];
     if(self){
-        self->_repository                = repository;
+        self->_interactor                = interactor;
         self->_messagePresenter          = messagePresenter;
         self->_successRoute              = successRoute;
         self->_successRouteParams        = successRouteParams;
@@ -99,8 +99,8 @@ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
     //set title
     JBLoginGetTitleCommand *getTitleCommand = [[JBLoginGetTitleCommand alloc] init];
     
-    [self.repository getDataForCommand:getTitleCommand
-                            completion:^BOOL(NSString *identifier, NSObject *titleResponse, NSError *__autoreleasing *error) {
+    [self.interactor processCommand:getTitleCommand
+                         completion:^BOOL(NSString *identifier, NSObject *titleResponse, NSError *__autoreleasing *error) {
                                 if(![titleResponse conformsToProtocol:@protocol(IJBLoginGetTitleResponse)]){
                                     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                                                    reason:@"response should conform to protocol: IJBLoginGetTitleResponse"
@@ -128,7 +128,7 @@ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:controller.view animated:YES];
     hud.labelText = NSLocalizedString(@"Performing login ...",@"progresshud login message");
-    [self.repository getDataForCommand:command completion:^BOOL(NSString *identifier, NSObject *object, NSError *__autoreleasing *error) {
+    [self.interactor processCommand:command completion:^BOOL(NSString *identifier, NSObject *object, NSError *__autoreleasing *error) {
         
         [MBProgressHUD hideHUDForView:controller.view animated:YES];
         
