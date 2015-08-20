@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "JBLoginView"
-  s.version          = "0.1.11"
+  s.version          = "0.1.12"
   s.summary          = "A simple VISPER based Login Screen."
   s.description      = <<-DESC
                         A simple VISPER based Login Screen.
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
   s.dependency 'VISPER'
-  s.dependency 'PureLayout' 
+  s.dependency 'PureLayout'
   s.dependency 'JBLoginDataCommands'
   s.dependency 'MBProgressHUD'
   s.dependency 'TSMessages'
