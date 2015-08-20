@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <VISPER/IVISPERWireframeViewControllerServiceProvider.h>
 #import <VISPER/IVISPERWireframe.h>
-#import <VISPERComposedApplication/IVISPERRepository.h>
+#import <VISPER/IVISPERRepository.h>
 @interface LoginWireframeControllerServiceProvider : NSObject<IVISPERWireframeViewControllerServiceProvider>
 
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <VISPER/VISPERViewControllerPresenter.h>
-#import <VISPERComposedApplication/IVISPERRepository.h>
+#import <VISPER/IVISPERRepository.h>
 #import "IJBLoginMessagePresenter.h"
 
 @interface JBLoginViewControllerPresenter : VISPERViewControllerPresenter

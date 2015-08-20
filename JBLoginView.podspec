@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit'
   s.dependency 'VISPER'
   s.dependency 'PureLayout'
-  s.dependency 'VISPERComposedApplication'
+  #s.dependency 'VISPERComposedApplication'
   s.dependency 'JBLoginDataCommands'
   s.dependency 'MBProgressHUD'
   s.dependency 'TSMessages'

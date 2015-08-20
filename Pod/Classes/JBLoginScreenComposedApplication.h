@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <VISPERComposedApplication/IVISPERComposedApplication.h>
+#import <VISPER/IVISPERComposedApplication.h>
 #import <VISPER/IVISPERWireframeRoutingOptionsServiceProvider.h>
 
 @interface JBLoginScreenComposedApplication : NSObject<IVISPERComposedApplication,IVISPERWireframeRoutingOptionsServiceProvider>
