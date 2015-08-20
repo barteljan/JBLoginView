@@ -7,8 +7,8 @@
 //
 
 #import <VISPER/VISPERWireframe.h>
-#import <VISPERComposedApplication/VISPERComposedRepository.h>
-#import <VISPERComposedApplication/VISPERComposedPersistenceStore.h>
+#import <VISPER/VISPERComposedRepository.h>
+#import <VISPER/VISPERComposedPersistenceStore.h>
 #import <JBLoginView/JBLoginScreenComposedApplication.h>
 #import <VISPER/VISPERModalRoutingPresenter.h>
 #import <VISPER/VISPERPushRoutingPresenter.h>
