@@ -12,6 +12,7 @@
 #import <JBLoginDataCommands/JBLoginGetTitleCommand.h>
 #import <JBLoginDataCommands/IJBLoginGetTitleResponse.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <VISPER/VISPER.h>
 
 
 @interface JBLoginViewControllerPresenter()
@@ -135,7 +136,7 @@ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
         if(error){
             [self.messagePresenter showErrorMessageWithTitle:(*error).localizedDescription callback:nil];
         } else{
-            NSObject<IVISPERRoutingOption> *option = [self.wireframe presentRootVCRoutingOption:YES];
+            NSObject<IVISPERRoutingOption> *option = [VISPER routingOptionPresentRootVC:YES];
         
             [self.wireframe routeURL:self.successRoute
                       withParameters:self.successRouteParams
@@ -147,7 +148,7 @@ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
 }
 
 -(void)forgotPasswordAction{
-    NSObject<IVISPERRoutingOption> *option = [self.wireframe pushRoutingOption:YES];
+    NSObject<IVISPERRoutingOption> *option = [VISPER routingOptionPush:YES];
     [self.wireframe routeURL:self.forgotPasswordRoute
               withParameters:self.forgotPasswordRouteParams
                      options:option];

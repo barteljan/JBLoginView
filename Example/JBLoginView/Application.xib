@@ -12,7 +12,6 @@
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <customObject id="bYg-Ix-Cfg" userLabel="App Delegate" customClass="JBAppDelegate">
             <connections>
-                <outlet property="navigationController" destination="9W9-22-qOv" id="gEw-KK-nUK"/>
                 <outlet property="window" destination="Na2-4i-xf1" id="Wlm-Lq-uk4"/>
             </connections>
         </customObject>
@@ -20,30 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-            <connections>
-                <outlet property="rootViewController" destination="9W9-22-qOv" id="99d-HT-bYx"/>
-            </connections>
             <point key="canvasLocation" x="307" y="217"/>
         </window>
-        <navigationController id="9W9-22-qOv">
-            <navigationBar key="navigationBar" contentMode="scaleToFill" id="4gq-pg-tff">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </navigationBar>
-            <viewControllers>
-                <viewController id="0CW-aX-sPv">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="r5z-hA-N9J"/>
-                        <viewControllerLayoutGuide type="bottom" id="qI6-JE-iWV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="U3f-bg-LTw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Item" id="aKC-Ld-IVl"/>
-                </viewController>
-            </viewControllers>
-        </navigationController>
     </objects>
 </document>
