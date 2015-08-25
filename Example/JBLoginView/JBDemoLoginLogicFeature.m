@@ -49,15 +49,14 @@
                                              parameters:(NSDictionary *)dictionary
                                          currentOptions:(NSObject<IVISPERRoutingOption> *)currentOptions{
     
-    if(currentOptions){
-        return currentOptions;
-    }
+   
     
     if([routePattern isEqualToString:@"/login-success"] || [routePattern isEqualToString:@"/forgetPassword"]){
         return [VISPER routingOptionPush:YES];
+    }else{
+        return currentOptions;
     }
     
-    return nil;
 }
 
 @end

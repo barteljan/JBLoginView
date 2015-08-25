@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SuccessViewController">
@@ -14,8 +14,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sie wurden erfolgreich angemeldet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmk-6F-mEB">
-                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login successful!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T87-hm-hSH">
+                    <rect key="frame" x="226" y="288" width="148" height="24"/>
                     <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -23,29 +23,9 @@
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="xmk-6F-mEB" secondAttribute="centerY" constant="184.5" id="FTH-KR-7re">
-                    <variation key="widthClass=compact" constant="0.0"/>
-                </constraint>
-                <constraint firstAttribute="centerX" secondItem="xmk-6F-mEB" secondAttribute="centerX" id="Zls-pi-sdR"/>
+                <constraint firstAttribute="centerX" secondItem="T87-hm-hSH" secondAttribute="centerX" id="DHx-Dp-gdK"/>
+                <constraint firstAttribute="centerY" secondItem="T87-hm-hSH" secondAttribute="centerY" id="cPK-CY-UMc"/>
             </constraints>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="xmk-6F-mEB"/>
-                </mask>
-                <mask key="constraints">
-                    <exclude reference="FTH-KR-7re"/>
-                    <exclude reference="Zls-pi-sdR"/>
-                </mask>
-            </variation>
-            <variation key="widthClass=compact">
-                <mask key="subviews">
-                    <include reference="xmk-6F-mEB"/>
-                </mask>
-                <mask key="constraints">
-                    <include reference="FTH-KR-7re"/>
-                    <include reference="Zls-pi-sdR"/>
-                </mask>
-            </variation>
         </view>
     </objects>
 </document>

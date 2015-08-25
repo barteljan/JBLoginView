@@ -43,48 +43,6 @@
     
     return YES;
 
-    
-    /*
-    //setup visper application
-    self.wireframe = [[VISPERWireframe alloc] init];
-    
-    [self.wireframe addControllerServiceProvider:self withPriority:0];
-    [self.wireframe addRoutingOptionsServiceProvider:self withPriority:0];
-    
-    [self.wireframe addRoutingPresenter:[[VISPERPushRoutingPresenter alloc]
-                                         initWithNavigationController:self.navigationController]
-                           withPriority:0];
-    
-    [self.wireframe addRoutingPresenter:[[VISPERRootVCRoutingPresenter alloc]
-                                         initWithNavigationController:self.navigationController]
-                           withPriority:0];
-
-    
-    VISPERComposedInteractor *interactor = [[VISPERComposedInteractor alloc] init];
-    
-    //add two dummy repositories for mocking the environments responses
-   
-    
-    
-    //add two routes to navigate when login has been done
-        
-    //generate JBLoginScreenApplication
-    self.composedApplication = [[JBLoginViewFeature alloc]
-            initWithStartingRoute:@"/login"
-                 successRoute:[NSURL URLWithString:@"/login-success"]
-           successRouteParams:@{}
-          forgotPasswordRoute:[NSURL URLWithString:@"/forgetPassword"]
-    forgotPasswordRouteParams:@{}];
-    
-    
-    //let JBLoginScreenApplication initialize visper application
-    [self.composedApplication bootstrapWireframe:self.wireframe
-                                      interactor:interactor];
-    
-    //route to the login view
-    [self.wireframe routeURL:[NSURL URLWithString:self.composedApplication.startingRoute]];
-    */
-    return YES;
 }
 
 
