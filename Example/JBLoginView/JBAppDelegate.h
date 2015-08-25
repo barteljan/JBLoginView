@@ -9,14 +9,11 @@
 @import UIKit;
 #import <VISPER/IVISPERWireframe.h>
 #import "JBLoginViewFeature.h"
-#import <VISPER/IVISPERWireframeViewControllerServiceProvider.h>
-#import <VISPER/IVISPERWireframeRoutingOptionsServiceProvider.h>
+#import <VISPER/VISPERApplication.h>
 
-@interface JBAppDelegate : UIResponder <UIApplicationDelegate,IVISPERWireframeViewControllerServiceProvider,IVISPERWireframeRoutingOptionsServiceProvider>
+@interface JBAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWindow *window;
-@property (strong, nonatomic) IBOutlet UINavigationController *navigationController;
-@property (strong, nonatomic) NSObject<IVISPERWireframe>*wireframe;
-@property (strong, nonatomic) JBLoginViewFeature *composedApplication;
+@property (strong, nonatomic) VISPERApplication *visperApplication;
 
 @end

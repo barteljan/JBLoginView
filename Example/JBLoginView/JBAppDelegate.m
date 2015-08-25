@@ -6,19 +6,13 @@
 //  Copyright (c) 2015 Jan Bartel. All rights reserved.
 //
 
-#import <VISPER/VISPERWireframe.h>
-#import <JBLoginView/JBLoginViewFeature.h>
-#import <VISPER/VISPERModalRoutingPresenter.h>
-#import <VISPER/VISPERPushRoutingPresenter.h>
-#import <VISPER/VISPERRootVCRoutingPresenter.h>
-#import <VISPER/VISPERComposedInteractor.h>
-#import "SuccessViewController.h"
-#import "ForgotPasswordViewController.h"
 #import "JBAppDelegate.h"
+#import "JBDemoLoginLogicFeature.h"
+#import <JBLoginView/JBLoginViewFeature.h>
 #import <UIColor_HTMLColors/UIColor+HTMLColors.h>
-#import "JBDummyLoginRepository.h"
-#import "JBDummyGetTitleRepository.h"
 #import <JBLoginView/JBLoginView.h>
+#import <VISPER/VISPER.h>
+
 
 @implementation JBAppDelegate
 
@@ -27,6 +21,30 @@
     
     [self initializeUIAppeareance];
     
+    self.visperApplication = [[VISPERApplication alloc] init];
+    
+    self.window.rootViewController = self.visperApplication.rootViewController;
+    
+    JBLoginViewFeature *loginViewFeature = [[JBLoginViewFeature alloc] initWithStartingRoute:@"/login"
+                                                                                successRoute:[NSURL URLWithString:@"/login-success"]
+                                                                          successRouteParams:@{}
+                                                                         forgotPasswordRoute:[NSURL URLWithString:@"/forgetPassword"]
+                                                                   forgotPasswordRouteParams:@{}];
+    [self.visperApplication addFeature:loginViewFeature];
+    
+    
+    JBDemoLoginLogicFeature *loginLogicFeature = [[JBDemoLoginLogicFeature alloc] init];
+    [self.visperApplication addFeature:loginLogicFeature];
+    
+       
+    [self.visperApplication routeURL:[NSURL URLWithString:loginViewFeature.startingRoute]
+                      withParameters:nil
+                             options:[VISPER routingOptionPresentRootVC:NO]];
+    
+    return YES;
+
+    
+    /*
     //setup visper application
     self.wireframe = [[VISPERWireframe alloc] init];
     
@@ -45,20 +63,14 @@
     VISPERComposedInteractor *interactor = [[VISPERComposedInteractor alloc] init];
     
     //add two dummy repositories for mocking the environments responses
-    JBDummyLoginRepository *loginRepository = [[JBDummyLoginRepository alloc] initWithIdentifier:@"dummyLogin"];
-    [interactor addInteractor:loginRepository];
-    JBDummyGetTitleRepository *titleRepository = [[JBDummyGetTitleRepository alloc] initWithIdentifier:@"dummyLoginTitle"];
-    [interactor addInteractor:titleRepository];
+   
     
     
     //add two routes to navigate when login has been done
-    [self.wireframe addRoute:@"/login-success"];
-    [self.wireframe addRoute:@"/forgetPassword"];
-    
-    
+        
     //generate JBLoginScreenApplication
     self.composedApplication = [[JBLoginViewFeature alloc]
-            initWithWireframe:self.wireframe
+            initWithStartingRoute:@"/login"
                  successRoute:[NSURL URLWithString:@"/login-success"]
            successRouteParams:@{}
           forgotPasswordRoute:[NSURL URLWithString:@"/forgetPassword"]
@@ -71,7 +83,7 @@
     
     //route to the login view
     [self.wireframe routeURL:[NSURL URLWithString:self.composedApplication.startingRoute]];
-    
+    */
     return YES;
 }
 
@@ -96,26 +108,5 @@
     
 }
 
--(UIViewController*)controllerForRoute:(NSString *)routePattern
-                        routingOptions:(NSObject<IVISPERRoutingOption> *)options
-                        withParameters:(NSDictionary *)parameters{
-    if([routePattern isEqualToString:@"/login-success"]){
-        return [[SuccessViewController alloc] initWithNibName:@"SuccessViewController"
-                                                       bundle:nil];
-    }else if([routePattern isEqualToString:@"/forgetPassword"]){
-        return [[ForgotPasswordViewController alloc] initWithNibName:@"ForgotPasswordViewController" bundle:nil];
-    }
-    
-    return nil;
-}
 
--(NSObject<IVISPERRoutingOption>*)optionForRoutePattern:(NSString *)routePattern
-                                             parameters:(NSDictionary *)dictionary
-                                         currentOptions:(NSObject<IVISPERRoutingOption> *)currentOptions{
-    if([routePattern isEqualToString:@"/login-success"]){
-        return [self.wireframe pushRoutingOption:YES];
-    }
-    
-    return nil;
-}
 @end

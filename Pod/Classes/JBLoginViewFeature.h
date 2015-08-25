@@ -9,18 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <VISPER/IVISPERFeature.h>
 #import <VISPER/IVISPERWireframeRoutingOptionsServiceProvider.h>
+#import <VISPER/VISPERFeature.h>
 
-@interface JBLoginViewFeature : NSObject<IVISPERFeature,IVISPERWireframeRoutingOptionsServiceProvider>
+@interface JBLoginViewFeature : VISPERFeature
 
--(id)initWithWireframe:(NSObject <IVISPERWireframe> *)wireframe
+@property (readonly,nonatomic) NSString *startingRoute;
+@property (readonly,nonatomic) NSURL *successRoute;
+@property (readonly,nonatomic) NSDictionary *successRouteParams;
+@property (readonly,nonatomic) NSURL *forgotPasswordRoute;
+@property (readonly,nonatomic) NSDictionary *forgotPasswordRouteParams;
+
+
+-(id)initWithStartingRoute:(NSString *)startingRoute
           successRoute:(NSURL *)successRoute
     successRouteParams:(NSDictionary *)successRouteParams
    forgotPasswordRoute:(NSURL *)forgotPasswordRoute
 forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams;
 
--(void)bootstrapWireframe:(NSObject<IVISPERWireframe> *)wireframe
-               interactor:(NSObject<IVISPERComposedInteractor> *)interactor;
-
--(NSString*)startingRoute;
 
 @end
