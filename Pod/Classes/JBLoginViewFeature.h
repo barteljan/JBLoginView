@@ -26,5 +26,11 @@
    forgotPasswordRoute:(NSURL *)forgotPasswordRoute
 forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams;
 
-
+-(id)initWithStartingRoute:(NSString *)startingRoute
+              successRoute:(NSURL *)successRoute
+        successRouteParams:(NSDictionary *)successRouteParams
+       forgotPasswordRoute:(NSURL *)forgotPasswordRoute
+ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams
+                   nibName:(NSString*)nibName
+                    bundle:(NSBundle*)bundle;
 @end

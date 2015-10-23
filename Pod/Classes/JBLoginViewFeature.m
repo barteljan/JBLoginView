@@ -7,7 +7,9 @@
 //
 
 #import "JBLoginViewFeature.h"
-#import "LoginWireframeControllerServiceProvider.h"
+#import "JBLoginViewController.h"
+#import "JBLoginViewControllerPresenter.h"
+#import "JBLoginMessagePresenter.h"
 #import <VISPER/VISPER.h>
 
 @interface JBLoginViewFeature ()
@@ -18,6 +20,9 @@
 
 @property (nonatomic) NSURL *forgotPasswordRoute;
 @property (nonatomic) NSDictionary *forgotPasswordRouteParams;
+
+@property (nonatomic) NSString *nibName;
+@property (nonatomic) NSBundle *bundle;
 
 
 
@@ -31,6 +36,25 @@
        forgotPasswordRoute:(NSURL *)forgotPasswordRoute
  forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
     
+    return [self initWithStartingRoute:startingRoute
+                          successRoute:successRoute
+                    successRouteParams:successRouteParams
+                   forgotPasswordRoute:forgotPasswordRoute
+             forgotPasswordRouteParams:forgotPasswordRouteParams
+                               nibName:nil
+                                bundle:nil];
+}
+
+
+-(id)initWithStartingRoute:(NSString *)startingRoute
+              successRoute:(NSURL *)successRoute
+        successRouteParams:(NSDictionary *)successRouteParams
+       forgotPasswordRoute:(NSURL *)forgotPasswordRoute
+ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams
+                   nibName:(NSString*)nibName
+                    bundle:(NSBundle*)bundle{
+    
+    
     self = [super init];
     
     if(self){
@@ -39,35 +63,53 @@
         self->_forgotPasswordRoute          = forgotPasswordRoute;
         self->_forgotPasswordRouteParams    = forgotPasswordRouteParams;
         self->_startingRoute                = startingRoute;
+        if(nibName){
+            self->_nibName                  = nibName;
+        }else{
+            self->_nibName                  = @"JBLoginViewController";
+        }
+        if(bundle){
+            self->_bundle                   = bundle;
+        }else{
+            self->_bundle                   =  [self bundleByName:@"JBLoginView"];
+        }
         [self addRoutePattern:startingRoute];
     }
     
     return self;
+
 }
+
 
 -(NSArray*)routePatterns{
     return [NSArray arrayWithObject:[self startingRoute]];
 }
 
-
--(void)bootstrapWireframe:(NSObject<IVISPERWireframe> *)wireframe
-               interactor:(NSObject<IVISPERComposedInteractor> *)interactor{
+-(UIViewController *)controllerForRoute:(NSString *)routePattern
+                         routingOptions:(NSObject<IVISPERRoutingOption> *)options
+                         withParameters:(NSDictionary *)parameters{
     
-    [super bootstrapWireframe:wireframe
-                   interactor:interactor];
-    
-    LoginWireframeControllerServiceProvider *controllerProvider = [[LoginWireframeControllerServiceProvider alloc]
-                                                                   initWithLoginRoutePattern:self.startingRoute
-                                                                   wireframe:wireframe
-                                                                   interactor:interactor
-                                                                   successRoute:self.successRoute
-                                                                   successRouteParams:self.successRouteParams
-                                                                   forgotPasswordRoute:self.forgotPasswordRoute
-                                                                   forgotPasswordRouteParams:self.forgotPasswordRouteParams];
-    
-    [self.wireframe addControllerServiceProvider:controllerProvider
-                                    withPriority:0];
+    if([routePattern isEqualToString:self.startingRoute]){
+        
+        JBLoginViewController *controller = [[JBLoginViewController alloc] initWithNibName:self.nibName
+                                                                                    bundle:self.bundle];
+        
+        JBLoginMessagePresenter *messagePresenter = [[JBLoginMessagePresenter alloc] initWithViewController:controller];
+        
+        JBLoginViewControllerPresenter *presenter = [[JBLoginViewControllerPresenter alloc] initWithWireframe:self.wireframe
+                                                                                                   interactor:self.interactor
+                                                                                             messagePresenter:messagePresenter
+                                                                                            loginSuccessRoute:self.successRoute
+                                                                                           successRouteParams:self.successRouteParams
+                                                                                          forgotPasswordRoute:self.forgotPasswordRoute
+                                                                                    forgotPasswordRouteParams:self.forgotPasswordRouteParams];
+        [controller addVisperPresenter:presenter];
+        
+        return controller;
+    }
+    return nil;
 }
+
 
 -(NSObject<IVISPERRoutingOption>*)optionForRoutePattern:(NSString*)routePattern
                                              parameters:(NSDictionary*)dictionary
@@ -79,6 +121,45 @@
     if([routePattern isEqualToString:self.startingRoute] && !currentOptions){
         return [VISPER routingOptionPresentRootVC:YES];
     }
+    return nil;
+}
+
+//copied from http://stackoverflow.com/questions/5836587/how-do-i-get-all-resource-paths-in-my-bundle-recursively-in-ios
+- (NSArray *)recursivePathsForResourcesOfType:(NSString *)type inDirectory:(NSString *)directoryPath{
+    
+    NSMutableArray *filePaths = [[NSMutableArray alloc] init];
+    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtPath:directoryPath];
+    
+    NSString *filePath;
+    
+    while ((filePath = [enumerator nextObject]) != nil){
+        if (!type || [[filePath pathExtension] isEqualToString:type]){
+            [filePaths addObject:[directoryPath stringByAppendingPathComponent:filePath]];
+        }
+    }
+    
+    return filePaths;
+}
+
+-(NSBundle*)bundleByName:(NSString*)bundleName{
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    
+    NSString *path = nil;
+    
+    NSArray *bundlePaths = [self recursivePathsForResourcesOfType:@"bundle" inDirectory:[mainBundle bundlePath]];
+    for (NSString *bundlePath in bundlePaths) {
+        NSString *lastComponent = [bundlePath lastPathComponent];
+        if([lastComponent isEqualToString:[NSString stringWithFormat:@"%@.bundle",bundleName]]){
+            path = bundlePath;
+            break;
+        }
+    }
+    
+    if(path){
+        NSBundle *bundle = [NSBundle bundleWithPath:path];
+        return bundle;
+    }
+    
     return nil;
 }
 @end
