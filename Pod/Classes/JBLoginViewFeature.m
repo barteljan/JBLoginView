@@ -24,8 +24,7 @@
 @property (nonatomic) NSString *nibName;
 @property (nonatomic) NSBundle *bundle;
 
-
-
+@property(nonatomic) NSObject<IJBLoginMessagePresenter> *messagePresenter;
 @end
 
 @implementation JBLoginViewFeature
@@ -45,6 +44,22 @@
                                 bundle:nil];
 }
 
+-(id)initWithStartingRoute:(NSString *)startingRoute
+              successRoute:(NSURL *)successRoute
+        successRouteParams:(NSDictionary *)successRouteParams
+       forgotPasswordRoute:(NSURL *)forgotPasswordRoute
+ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams
+          messagePresenter:(NSObject<IJBLoginMessagePresenter>*)messagePresenter {
+    return [self initWithStartingRoute:startingRoute
+                          successRoute:successRoute
+                    successRouteParams:successRouteParams
+                   forgotPasswordRoute:forgotPasswordRoute
+             forgotPasswordRouteParams:forgotPasswordRouteParams
+                               nibName:nil
+                                bundle:nil
+                      messagePresenter:messagePresenter];
+
+}
 
 -(id)initWithStartingRoute:(NSString *)startingRoute
               successRoute:(NSURL *)successRoute
@@ -54,7 +69,26 @@
                    nibName:(NSString*)nibName
                     bundle:(NSBundle*)bundle{
     
-    
+    return [self initWithStartingRoute:startingRoute
+                          successRoute:successRoute
+                    successRouteParams:successRouteParams
+                   forgotPasswordRoute:forgotPasswordRoute
+             forgotPasswordRouteParams:forgotPasswordRouteParams
+                               nibName:nibName
+                                bundle:bundle
+                      messagePresenter:nil];
+
+}
+
+-(id)initWithStartingRoute:(NSString *)startingRoute
+              successRoute:(NSURL *)successRoute
+        successRouteParams:(NSDictionary *)successRouteParams
+       forgotPasswordRoute:(NSURL *)forgotPasswordRoute
+ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams
+                   nibName:(NSString*)nibName
+                    bundle:(NSBundle*)bundle
+          messagePresenter:(NSObject<IJBLoginMessagePresenter>*)messagePresenter {
+
     self = [super init];
     
     if(self){
@@ -63,6 +97,7 @@
         self->_forgotPasswordRoute          = forgotPasswordRoute;
         self->_forgotPasswordRouteParams    = forgotPasswordRouteParams;
         self->_startingRoute                = startingRoute;
+        self->_messagePresenter             = messagePresenter;
         if(nibName){
             self->_nibName                  = nibName;
         }else{
@@ -85,6 +120,7 @@
     return [NSArray arrayWithObject:[self startingRoute]];
 }
 
+
 -(UIViewController *)controllerForRoute:(NSString *)routePattern
                          routingOptions:(NSObject<IVISPERRoutingOption> *)options
                          withParameters:(NSDictionary *)parameters{
@@ -94,11 +130,11 @@
         JBLoginViewController *controller = [[JBLoginViewController alloc] initWithNibName:self.nibName
                                                                                     bundle:self.bundle];
         
-        JBLoginMessagePresenter *messagePresenter = [[JBLoginMessagePresenter alloc] initWithViewController:controller];
+    
         
         JBLoginViewControllerPresenter *presenter = [[JBLoginViewControllerPresenter alloc] initWithWireframe:self.wireframe
                                                                                                    interactor:self.interactor
-                                                                                             messagePresenter:messagePresenter
+                                                                                             messagePresenter:self.messagePresenter
                                                                                             loginSuccessRoute:self.successRoute
                                                                                            successRouteParams:self.successRouteParams
                                                                                           forgotPasswordRoute:self.forgotPasswordRoute
@@ -123,6 +159,15 @@
     }
     return nil;
 }
+
+
+-(NSObject<IJBLoginMessagePresenter>*)messagePresenter{
+    if(!self->_messagePresenter){
+        self->_messagePresenter = [[JBLoginMessagePresenter alloc] init];
+    }
+    return self->_messagePresenter;
+}
+
 
 //copied from http://stackoverflow.com/questions/5836587/how-do-i-get-all-resource-paths-in-my-bundle-recursively-in-ios
 - (NSArray *)recursivePathsForResourcesOfType:(NSString *)type inDirectory:(NSString *)directoryPath{

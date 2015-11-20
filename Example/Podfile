@@ -10,5 +10,4 @@ end
 target 'JBLoginView_Tests', :exclusive => true do
   pod "JBLoginView", :path => "../"
   pod "UIColor-HTMLColors"
-  pod 'Kiwi'
 end

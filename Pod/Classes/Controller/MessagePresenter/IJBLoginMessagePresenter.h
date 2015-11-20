@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IJBLoginViewController.h"
 
 @protocol IJBLoginMessagePresenter <NSObject>
 
--(void)showErrorMessageWithTitle:(NSString*)title
-                        callback:(void (^)())callback;
+-(void)showMessageForError:(NSError*)error
+                  callback:(void (^)())callback
+              onController:(UIViewController<IJBLoginViewController>*)controller;
 
 @end

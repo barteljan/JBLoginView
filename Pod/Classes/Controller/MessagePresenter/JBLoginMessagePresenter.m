@@ -11,26 +11,18 @@
 @import UIKit;
 
 @interface JBLoginMessagePresenter()
-@property (nonatomic) UIViewController<IJBLoginViewController> *controller;
 @end
 
 @implementation JBLoginMessagePresenter
 
--(id)initWithViewController:(UIViewController<IJBLoginViewController>*)controller{
-    self = [super init];
-    if(self){
-        self->_controller = controller;
-    }
-    return self;
-}
-
-
-
--(void)showErrorMessageWithTitle:(NSString*)title
-                        callback:(void (^)())callback{
+-(void)showMessageForError:(NSError*)error
+                  callback:(void (^)())callback
+              onController:(UIViewController<IJBLoginViewController>*)controller{
     
-    [self.controller setTitleText:title];
-    [self.controller setSubTitleText:@""];
+    NSString *title = [error localizedDescription];
+    
+    [controller setTitleText:title];
+    [controller setSubTitleText:@""];
     
     if(callback){
         callback();

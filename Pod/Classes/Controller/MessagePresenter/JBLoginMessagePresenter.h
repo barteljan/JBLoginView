@@ -10,5 +10,6 @@
 #import "IJBLoginMessagePresenter.h"
 #import "IJBLoginViewController.h"
 @interface JBLoginMessagePresenter : NSObject<IJBLoginMessagePresenter>
--(id)initWithViewController:(UIViewController<IJBLoginViewController>*)controller;
+
+
 @end

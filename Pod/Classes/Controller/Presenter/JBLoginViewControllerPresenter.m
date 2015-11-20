@@ -134,7 +134,7 @@ forgotPasswordRouteParams:(NSDictionary*)forgotPasswordRouteParams{
         [MBProgressHUD hideHUDForView:controller.view animated:YES];
         
         if(error){
-            [self.messagePresenter showErrorMessageWithTitle:(*error).localizedDescription callback:nil];
+            [self.messagePresenter showMessageForError:*error callback:nil onController:controller];
         } else{
             NSObject<IVISPERRoutingOption> *option = [VISPER routingOptionPresentRootVC:YES];
         
