@@ -133,7 +133,7 @@
     
         
         JBLoginViewControllerPresenter *presenter = [[JBLoginViewControllerPresenter alloc] initWithWireframe:self.wireframe
-                                                                                                   interactor:self.interactor
+                                                                                                   interactor:self.commandBus
                                                                                              messagePresenter:self.messagePresenter
                                                                                             loginSuccessRoute:self.successRoute
                                                                                            successRouteParams:self.successRouteParams

@@ -21,7 +21,7 @@
 @property (nonatomic) NSDictionary *successRouteParams;
 @property (nonatomic) NSURL *forgotPasswordRoute;
 @property (nonatomic) NSDictionary *forgotPasswordRouteParams;
-@property (nonatomic) NSObject <IVISPERInteractor> *interactor;
+@property (nonatomic) NSObject <IVISPERCommandHandler> *interactor;
 @property (nonatomic) NSObject<IJBLoginMessagePresenter> *messagePresenter;
 
 @end
@@ -29,7 +29,7 @@
 @implementation JBLoginViewControllerPresenter
 
 -(id)initWithWireframe:(NSObject<IVISPERWireframe>*)wireframe
-            interactor:(NSObject<IVISPERInteractor> *)interactor
+            interactor:(NSObject<IVISPERCommandHandler> *)interactor
       messagePresenter:(NSObject<IJBLoginMessagePresenter>*)messagePresenter
      loginSuccessRoute:(NSURL*)successRoute
     successRouteParams:(NSDictionary*)successRouteParams

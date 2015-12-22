@@ -25,7 +25,7 @@
 }
 
 
--(void)getDataForCommand:(NSObject *)command
+-(void)processCommand:(NSObject *)command
               completion:(BOOL (^)(NSString *identifier, NSObject *response, NSError *__autoreleasing *error))completion{
 
     NSObject<IJBLoginLoginAsUserCommand> *loginCommand = (NSObject<IJBLoginLoginAsUserCommand> *)command;

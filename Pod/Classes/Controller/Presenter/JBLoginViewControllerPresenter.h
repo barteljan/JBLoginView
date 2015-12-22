@@ -14,7 +14,7 @@
 @interface JBLoginViewControllerPresenter : VISPERViewControllerPresenter
 
 -(id)initWithWireframe:(NSObject<IVISPERWireframe>*)wireframe
-            interactor:(NSObject<IVISPERInteractor> *)interactor
+            interactor:(NSObject<IVISPERCommandHandler> *)interactor
       messagePresenter:(NSObject<IJBLoginMessagePresenter>*)messagePresenter
      loginSuccessRoute:(NSURL*)successRoute
     successRouteParams:(NSDictionary*)successRouteParams

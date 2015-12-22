@@ -10,6 +10,6 @@
 #import <VISPER/VISPERRepository.h>
 #import <JBLoginDataCommands/IJBLoginGetTitleCommand.h>
 
-@interface JBDummyGetTitleRepository : VISPERRepository
+@interface JBDummyGetTitleRepository : VISPERCommandHandler
 
 @end

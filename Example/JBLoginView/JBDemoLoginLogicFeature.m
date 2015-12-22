@@ -34,14 +34,14 @@
 }
 
 -(void)bootstrapWireframe:(NSObject<IVISPERWireframe> *)wireframe
-               interactor:(NSObject<IVISPERComposedInteractor> *)interactor{
+               commandBus:(NSObject<IVISPERCommandBus> *)commandBus{
     [super bootstrapWireframe:wireframe
-                   interactor:interactor];
+                   commandBus:commandBus];
     
     JBDummyLoginRepository *loginRepository = [[JBDummyLoginRepository alloc] initWithIdentifier:@"dummyLogin"];
-    [interactor addInteractor:loginRepository];
+    [commandBus addHandler:loginRepository];
     JBDummyGetTitleRepository *titleRepository = [[JBDummyGetTitleRepository alloc] initWithIdentifier:@"dummyLoginTitle"];
-    [interactor addInteractor:titleRepository];
+    [commandBus addHandler:titleRepository];
     
 }
 
