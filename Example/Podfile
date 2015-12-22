@@ -3,7 +3,7 @@ use_frameworks!
 
 target 'JBLoginView_Example', :exclusive => true do
   pod "JBLoginView", :path => "../"
-  #pod "VISPER", :path => "../../VISPER/"
+  pod "VISPER"#pod , :path => "../../VISPER/"
   pod "UIColor-HTMLColors"
 end
 
