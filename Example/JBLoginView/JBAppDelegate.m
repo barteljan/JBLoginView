@@ -11,7 +11,7 @@
 #import <JBLoginView/JBLoginViewFeature.h>
 #import <UIColor_HTMLColors/UIColor+HTMLColors.h>
 #import <JBLoginView/JBLoginView.h>
-#import <VISPER/VISPER.h>
+@import VISPER;
 
 
 @implementation JBAppDelegate

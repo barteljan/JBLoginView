@@ -7,7 +7,7 @@
 //
 
 #import "JBLoginViewController.h"
-#import <VISPER/UIViewController+VISPER.h>
+@import VISPER;
 #import <PureLayout/PureLayout.h>
 
 @interface JBLoginViewController ()

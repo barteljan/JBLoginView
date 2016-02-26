@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <VISPER/VISPERRepository.h>
+@import VISPER;
 #import <JBLoginDataCommands/IJBLoginGetTitleCommand.h>
 
 @interface JBDummyGetTitleRepository : VISPERCommandHandler

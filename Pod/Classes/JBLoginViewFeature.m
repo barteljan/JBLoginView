@@ -10,7 +10,7 @@
 #import "JBLoginViewController.h"
 #import "JBLoginViewControllerPresenter.h"
 #import "JBLoginMessagePresenter.h"
-#import <VISPER/VISPER.h>
+@import VISPER;
 
 @interface JBLoginViewFeature ()
 

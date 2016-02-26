@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <VISPER/IVISPERFeature.h>
-#import <VISPER/IVISPERWireframeRoutingOptionsServiceProvider.h>
-#import <VISPER/VISPERFeature.h>
+@import VISPER;
 #import "IJBLoginMessagePresenter.h"
 
 @interface JBLoginViewFeature : VISPERFeature

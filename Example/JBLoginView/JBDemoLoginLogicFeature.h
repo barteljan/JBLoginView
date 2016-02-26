@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+@import VISPER;
 #import "SuccessViewController.h"
 #import "ForgotPasswordViewController.h"
-#import <VISPER/VISPERFeature.h>
 #import "JBDummyLoginRepository.h"
 #import "JBDummyGetTitleRepository.h"
-#import <VISPER/VISPER.h>
+
+
 
 @interface JBDemoLoginLogicFeature : VISPERFeature
 

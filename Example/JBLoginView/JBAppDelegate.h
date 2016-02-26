@@ -7,9 +7,9 @@
 //
 
 @import UIKit;
-#import <VISPER/IVISPERWireframe.h>
+
 #import "JBLoginViewFeature.h"
-#import <VISPER/VISPERApplication.h>
+@import VISPER;
 
 @interface JBAppDelegate : UIResponder <UIApplicationDelegate>
 

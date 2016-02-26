@@ -12,7 +12,7 @@
 #import <JBLoginDataCommands/JBLoginGetTitleCommand.h>
 #import <JBLoginDataCommands/IJBLoginGetTitleResponse.h>
 #import <MBProgressHUD/MBProgressHUD.h>
-#import <VISPER/VISPER.h>
+@import VISPER;
 
 
 @interface JBLoginViewControllerPresenter()

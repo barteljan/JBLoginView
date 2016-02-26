@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <VISPER/VISPERViewController.h>
+@import VISPER;
 #import "IJBLoginView.h"
 #import "IJBLoginViewController.h"
 

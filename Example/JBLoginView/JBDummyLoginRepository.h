@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <VISPER/VISPERRepository.h>
+@import VISPER;
 
 @interface JBDummyLoginRepository : VISPERCommandHandler
 

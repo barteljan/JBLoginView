@@ -16,21 +16,23 @@ PODS:
     - BlocksKit/DynamicDelegate
   - HexColors (2.2.1)
   - JBLoginDataCommands (0.1.5)
-  - JBLoginView (0.1.18):
+  - JBLoginView (0.1.19):
     - BlocksKit
     - JBLoginDataCommands
     - MBProgressHUD
     - PureLayout
     - TSMessages
     - VISPER
-  - JLRoutes (1.5.3)
+  - JLRoutes (1.5.5)
   - MBProgressHUD (0.9.2)
   - PureLayout (3.0.1)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
   - UIColor-HTMLColors (1.0.0)
-  - VISPER (0.2.1):
+  - VISPER (0.3.3):
     - JLRoutes (~> 1.5.2)
+    - VISPER-CommandBus
+  - VISPER-CommandBus (0.1.1)
 
 DEPENDENCIES:
   - JBLoginView (from `../`)
@@ -45,12 +47,13 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   JBLoginDataCommands: f659d38a97195c6ea02f086e120d8fc9ae366d55
-  JBLoginView: cf3a814355b3e5fb3d210506c07b0dc22671d5c1
-  JLRoutes: 20555d00693855b71e80715eeaae6a930a33b2f5
+  JBLoginView: ab1cbcfc7d69fe0ccb188c46991231b6d49cfb40
+  JLRoutes: d191a496b820f60d70225202d04289582da962df
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
   UIColor-HTMLColors: ce7466daa46e5c8a68a4fb137909b37b30f034f1
-  VISPER: 841fb673cde7f66c906c4fb708f9c89af33281c2
+  VISPER: bff94c74c39aaa4ee7ebd6b6d9b908bcc16fb695
+  VISPER-CommandBus: 601ed1deee37eef81bd4da6bc306736ca2e1084e
 
 COCOAPODS: 0.39.0
