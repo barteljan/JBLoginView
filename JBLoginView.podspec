@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "JBLoginView"
-  s.version          = "0.1.19"
+  s.version          = "0.1.20"
   s.summary          = "A simple VISPER based Login Screen."
   s.description      = <<-DESC
                         A simple VISPER based Login Screen.

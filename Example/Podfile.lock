@@ -32,16 +32,21 @@ PODS:
   - VISPER (0.3.3):
     - JLRoutes (~> 1.5.2)
     - VISPER-CommandBus
-  - VISPER-CommandBus (0.1.1)
+  - VISPER-CommandBus (0.1.2)
 
 DEPENDENCIES:
   - JBLoginView (from `../`)
   - UIColor-HTMLColors
-  - VISPER
+  - VISPER (from `../../VISPER/`)
+  - VISPER-CommandBus (from `../../VISPER-CommandBus/`)
 
 EXTERNAL SOURCES:
   JBLoginView:
-    :path: ../
+    :path: "../"
+  VISPER:
+    :path: "../../VISPER/"
+  VISPER-CommandBus:
+    :path: "../../VISPER-CommandBus/"
 
 SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
@@ -54,6 +59,6 @@ SPEC CHECKSUMS:
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
   UIColor-HTMLColors: ce7466daa46e5c8a68a4fb137909b37b30f034f1
   VISPER: bff94c74c39aaa4ee7ebd6b6d9b908bcc16fb695
-  VISPER-CommandBus: 601ed1deee37eef81bd4da6bc306736ca2e1084e
+  VISPER-CommandBus: de1302ffd1b32a3840b235fbda963dc8af26da75
 
 COCOAPODS: 0.39.0
