@@ -19,7 +19,7 @@
                   callback:(void (^)())callback
               onController:(UIViewController<IJBLoginViewController>*)controller{
     
-    NSString *title = [error localizedDescription];
+    NSString *title = NSLocalizedString([error localizedDescription],nil);
     
     [controller setTitleText:title];
     [controller setSubTitleText:@""];
